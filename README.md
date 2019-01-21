@@ -1,3 +1,3 @@
 # testi
-Learning more webdevving!
+Learning more webdevving.
 TYPO! By: Wille o/
