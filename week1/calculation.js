@@ -2,9 +2,9 @@
 function checkInp()
 {
     var x=document.getElementById("firstNumber").value;
-    var regex=/^[a-zA-Z]+$/;
+    var regex=/^[0a-zA-Z]+$/;
     if (x.match(regex)) {
-        alert("input must be numbers");
+        alert("input must be numbers and bigger than 0");
         return false;
     }
     if (x < 1) {
@@ -14,7 +14,7 @@ function checkInp()
     var x=document.getElementById("secondNumber").value;
     var regex=/^[a-zA-Z]+$/;
     if (x.match(regex)) {
-        alert("input must be numbers");
+        alert("input must be numbers and bigger than 0");
         return false;
     }
     if (x < 1) {
