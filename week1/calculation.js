@@ -22,6 +22,7 @@ function checkInp()
         return false; 
     }
 }
+
 //calculation
 function multiplyBy(){
 
