@@ -7,7 +7,6 @@
             span {cursor: pointer;}
         </style>
         <script>
-            // run this function when the document is loaded
             // create a couple of elements in an otherwise empty HTML page
             window.onload = function() {
 
@@ -16,14 +15,13 @@
                 document.getElementById('list').appendChild(ul);
 
                 for (var i = 0; i < array.length; i++){
-                    // Create the list item:
+                    // Create amazing list items :P
                     var li = document.createElement('li');
                     ul.appendChild(li);
                     // Set its contents from array:
                     li.innerHTML += array[i];
                 }
             }
-            
         </script>
     </head>
     <body>
