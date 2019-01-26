@@ -16,7 +16,10 @@
             };
             var fidoString = JSON.stringify(fido2);
             console.log("We made a string from a dog! " + fidoString);
-
+            
+            var Foodstring = '{"icecream": { "flavour1": "strawberry", "flavour2": "apple", "flavour3": "vanilja",}, "price": {"flavour1: "3,99e", "flavour2": "4,55e", "flavour3": "3,10e",}';
+            var FoodParse = JSON.parse(foodstring);
+            
             var food = {
                 icecream: {
                     flavour1: "strawberry",
@@ -29,12 +32,15 @@
                     flavour3: "3,10e",
                 }
             };
-            var foodstring = JSON.stringify(food);
+            var Foodstring = JSON.stringify(food);
             console.log("Here's some food as string! " + foodstring);
 
             for (x in fidoString) {
                 document.getElementById("Food").innerHTML += fidoString[x] + "<br>";
             }
+            //back to a JS object myObject
+            var foodObject = myObject.food;
+            
             //document.getElementById("Food").innerHTML = foodz;
 
         </script>
