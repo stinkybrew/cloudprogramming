@@ -23,21 +23,34 @@
                     div.attachEvent("click", kasittele);
                 }*/
 
-                //ALLA OLEVALLA KOODILLA YRITIN SAADA TOIMIMAAN, MUUTTEI SE JOSTAIN SYYSTÄ LÄHTENYT WÖRKKIMÄÄN.
                 //JOUDUIN TYYTYMÄÄN n.90%:sti VALIDIIN KOODIIN.
-                //Syntaxissa on jotain mihin en löytänyt ratkaisua 4tunnin googlettamisen jälkeenkään.
-
+                //Syntaxissa on jotain mihin en löytänyt ratkaisua 6tunnin googlailun jälkeenkään.
+                //Ideanani oli asettaa kaksi eventtiä, jossa kumpikin toimisi omanaan. Tällä hetkellä jos kursosi menee tekstin päälle tulee alert, muttei hiirenpainalluksella tapahdu mitään.
+          
                 if (div.addEventListener) {
-                    div.addEventListener("mouseover click", toiminto, false); // Kun tähän valitsee eventiksi vain toisen, niin toimii, muttei kummallakin toimi. consolikaan ei ilmoita erroria.
+                    div.addEventListener("mousemove", toiminto, false);
+                    console.log("testi mouseover");        
                 }
                 else if (div.attachevent) {
-                    div.attachevent("mouseover click", toiminto);
+                    div.attachevent("mousemove", toiminto);
+                    console.log("testi mouseover"); 
+                }
+                if (div.addEventListener) {
+                    div.addEventListener("click", toiminto, false);
+                    console.log("testi click"); 
+                } 
+                else if (div.attachEvent) {
+                    div.attachEvent("click", toiminto);
+                    console.log("testi click");
                 }
             };
-                function toiminto(i) {
-                    if (event.type === "mouseover") {
+                function toiminto() {
+                    if (event.type === "mousemove") {
+                        console.log("testi toiminto mouseover"); 
+                        mouseOver();
                     }
                     else if (event.type === "click") {
+                        console.log("testi toiminto click");
                         kasittele();
                     } 
                 } 
@@ -61,7 +74,7 @@
                     else {
                         target = event.srcElement;
                     }
-                    alert("You mouse overd " + target.id);
+                    alert("You moved mouse over " + target.id);
                 }
         </script>
     </head>
