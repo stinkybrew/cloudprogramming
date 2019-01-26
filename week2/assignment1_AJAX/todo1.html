@@ -9,22 +9,27 @@
         <script>
             window.onload = function() {
                 var div = document.getElementById("text");
-
                 if (div.addEventListener) {
+                    div.addEventListener("mouseover click", toiminto);
+                }
+            }
+            /*if (div.addEventListener) {
                     div.addEventListener("mouseover", mouseOver, false);
                 } 
                 else if (div.attachevent) {
                     div.attachevent("mouseover", mouseOver);
                 }
-
                 if (div.addEventListener) {
                     div.addEventListener("click", kasittele, false);
                 } 
                 else if (div.attachEvent) {
                     div.attachEvent("click", kasittele);
+                }*/
+            function toiminto() {
+                if (event.type === "mouseover") {
+                    mouseOver();
                 }
-            }
-            
+            } 
             function kasittele(e) {
                 var event = e || window.event;
                 var target;
@@ -46,7 +51,10 @@
                     target = event.srcElement;
                 }
                 alert("You mouse overd " + target.id);
-            }  
+                if (event.type === "click") {
+                    kasittele();
+                }  
+            }
         </script>
     </head>
     <body>
