@@ -8,15 +8,39 @@
   </style>
   <script>
 window.onload = function() {
+    var mouseover = document.getElementById("text").onmouseover = function() {mouseOver()};
 	var div = document.getElementById("text");
 	if (div.addEventListener) {
 		div.addEventListener("click", kasittele, false);
-	} else if (div.attachEvent) {
+	} 
+    else if (div.attachEvent) {
 		div.attachEvent("click", kasittele);
 	}
-};
+    if (mouseover.addEventListener) {
+        mouseover.addEventListener("hover", mouseOver, false);
+    } 
+    else if (mouseover.attachevent) {
+            mouseover.attachevent("hover", mouseOver);
+        }
+    }
+
+
+
 function kasittele(e) {
 	var event = e || window.event;
+	var target;
+	if (event.target) {
+		target = event.target;
+        
+	} 
+    else {
+		target = event.srcElement;
+	}
+    alert("You clicked on " + target.id);
+	
+}
+function mouseOver(i) {
+	var event = i || window.event;
 	var target;
 	if (event.target) {
 		target = event.target;
@@ -24,8 +48,8 @@ function kasittele(e) {
     else {
 		target = event.srcElement;
 	}
-	alert("You clicked on " + target.id);
-}
+	alert("You mouse overd " + target.id);
+}  
   </script>
 </head>
 <body>
