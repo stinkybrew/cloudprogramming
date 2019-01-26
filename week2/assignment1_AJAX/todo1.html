@@ -9,11 +9,8 @@
         <script>
             window.onload = function() {
                 var div = document.getElementById("text");
-                if (div.addEventListener) {
-                    div.addEventListener("mouseover click", toiminto);
-                }
-            }
-            /*if (div.addEventListener) {
+
+                /*if (div.addEventListener) {
                     div.addEventListener("mouseover", mouseOver, false);
                 } 
                 else if (div.attachevent) {
@@ -25,36 +22,47 @@
                 else if (div.attachEvent) {
                     div.attachEvent("click", kasittele);
                 }*/
-            function toiminto() {
-                if (event.type === "mouseover") {
-                    mouseOver();
+
+                //ALLA OLEVALLA KOODILLA YRITIN SAADA TOIMIMAAN, MUUTTEI SE JOSTAIN SYYSTÄ LÄHTENYT WÖRKKIMÄÄN.
+                //JOUDUIN TYYTYMÄÄN n.90%:sti VALIDIIN KOODIIN.
+                //Syntaxissa on jotain mihin en löytänyt ratkaisua 4tunnin googlettamisen jälkeenkään.
+
+                if (div.addEventListener) {
+                    div.addEventListener("mouseover click", toiminto, false); // Kun tähän valitsee eventiksi vain toisen, niin toimii, muttei kummallakin toimi. consolikaan ei ilmoita erroria.
                 }
-            } 
-            function kasittele(e) {
-                var event = e || window.event;
-                var target;
-                if (event.target) {
-                    target = event.target;
+                else if (div.attachevent) {
+                    div.attachevent("mouseover click", toiminto);
+                }
+            };
+                function toiminto(i) {
+                    if (event.type === "mouseover") {
+                    }
+                    else if (event.type === "click") {
+                        kasittele();
+                    } 
                 } 
-                else {
-                    target = event.srcElement;
+                function kasittele(e) {
+                    var event = e || window.event;
+                    var target;
+                    if (event.target) {
+                        target = event.target;
+                    } 
+                    else {
+                        target = event.srcElement;
+                    }
+                    alert("You clicked on " + target.id);
                 }
-                alert("You clicked on " + target.id);
-            }
-            function mouseOver(i) {
-                var event = i || window.event;
-                var target;
-                if (event.target) {
-                    target = event.target;
-                } 
-                else {
-                    target = event.srcElement;
+                function mouseOver(i) {
+                    var event = i || window.event;
+                    var target;
+                    if (event.target) {
+                        target = event.target;
+                    } 
+                    else {
+                        target = event.srcElement;
+                    }
+                    alert("You mouse overd " + target.id);
                 }
-                alert("You mouse overd " + target.id);
-                if (event.type === "click") {
-                    kasittele();
-                }  
-            }
         </script>
     </head>
     <body>
