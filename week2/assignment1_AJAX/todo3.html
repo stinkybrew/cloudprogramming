@@ -9,7 +9,6 @@
             var fido = JSON.parse(fidoString);
             console.log("We have made a dog out of a string! " + fido.name);
 
-
             var fido2 = {
                 name: "Fido",
                 breed: "Mixed",
@@ -18,9 +17,30 @@
             var fidoString = JSON.stringify(fido2);
             console.log("We made a string from a dog! " + fidoString);
 
+            var food = {
+                icecream: {
+                    flavour1: "strawberry",
+                    flavour2: "apple",
+                    flavour3: "vanilja",
+                },
+                price: {
+                    flavour1: "3,99e",
+                    flavour2: "4,55e",
+                    flavour3: "3,10e",
+                }
+            };
+            var foodstring = JSON.stringify(food);
+            console.log("Here's some food as string! " + foodstring);
+
+            for (x in fidoString) {
+                document.getElementById("Food").innerHTML += fidoString[x] + "<br>";
+            }
+            //document.getElementById("Food").innerHTML = foodz;
+
         </script>
     </head>
     <body>
         <h2>Assignment w2 Ajax_TODO2</h2> <br>
+        <p id="Food">Tulostus: </p>
     </body>
 </html>
