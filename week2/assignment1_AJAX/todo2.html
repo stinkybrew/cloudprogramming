@@ -8,18 +8,24 @@
         </style>
         <script>
             // run this function when the document is loaded
+            // create a couple of elements in an otherwise empty HTML page
             window.onload = function() {
+                var list = document.createElement('ul');
+                var array = ['B1','B2','B3','B4','B5'];
 
-                // create a couple of elements in an otherwise empty HTML page
-                var heading = document.createElement("ul");
-                var heading_text = document.createTextNode("Big Head!");
-                heading.appendChild(heading_text);
-                document.body.appendChild(heading);
-                
-                for (i=1; i<5; i++) {
-                    document.write("<li>DOMTokenList</li>") ;
+                for (var i = 0; i < array.length; i++) {
+                    // Create the list item:
+                    var item = document.createElement('li');
+
+                    // Set its contents from array:
+                    var textnode = document.createTextNode(array[i]);
+                    list.appendChild(textnode);
+
+                    
                 }
+                document.body.appendChild(list);
             }
+
         </script>
     </head>
     <body>
