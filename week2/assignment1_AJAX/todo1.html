@@ -8,22 +8,23 @@
         </style>
         <script>
             window.onload = function() {
-                var mouseover = document.getElementById("text").onmouseover = function() {mouseOver()};
                 var div = document.getElementById("text");
 
-                if (mouseover.addEventListener) {
-                    mouseover.addEventListener("mouseover", mouseOver, false);
+                if (div.addEventListener) {
+                    div.addEventListener("mouseover", mouseOver, false);
                 } 
-                else if (mouseover.attachevent) {
-                    mouseover.attachevent("mouseover", mouseOver);
+                else if (div.attachevent) {
+                    div.attachevent("mouseover", mouseOver);
                 }
+
                 if (div.addEventListener) {
                     div.addEventListener("click", kasittele, false);
                 } 
                 else if (div.attachEvent) {
                     div.attachEvent("click", kasittele);
-                }                
+                }
             }
+            
             function kasittele(e) {
                 var event = e || window.event;
                 var target;
