@@ -4,49 +4,34 @@
         <meta charset="utf-8">
         <title> JSON </title>
         <script>
+            window.onload = function() {
+                var Foodstring = '{"icecream": { "flavour1": "strawberry", "flavour2": "apple", "flavour3": "vanilja",} "price": {"flavour1": "3,99e", "flavour2": "4,55e", "flavour3": "3,10e",}}';
 
-            var fidoString = '{ "name": "Fido", "breed": "Mixed", "weight": 38 }';
-            var fido = JSON.parse(fidoString);
-            console.log("We have made a dog out of a string! " + fido.name);
+                var food = {
+                    icecream: {
+                        flavour1: "strawberry",
+                        flavour2: "apple",
+                        flavour3: "vanilja",
+                    },
+                    price: {
+                        flavour1: "3,99e",
+                        flavour2: "4,55e",
+                        flavour3: "3,10e",
+                    }
+                };
+                var Foodstring = JSON.stringify(food);
+                console.log("Here's some food as string! " + Foodstring);
 
-            var fido2 = {
-                name: "Fido",
-                breed: "Mixed",
-                weight: 38
-            };
-            var fidoString = JSON.stringify(fido2);
-            console.log("We made a string from a dog! " + fidoString);
-            
-            var Foodstring = '{"icecream": { "flavour1": "strawberry", "flavour2": "apple", "flavour3": "vanilja",}, "price": {"flavour1: "3,99e", "flavour2": "4,55e", "flavour3": "3,10e",}';
-            var FoodParse = JSON.parse(foodstring);
-            
-            var food = {
-                icecream: {
-                    flavour1: "strawberry",
-                    flavour2: "apple",
-                    flavour3: "vanilja",
-                },
-                price: {
-                    flavour1: "3,99e",
-                    flavour2: "4,55e",
-                    flavour3: "3,10e",
-                }
-            };
-            var Foodstring = JSON.stringify(food);
-            console.log("Here's some food as string! " + foodstring);
+                document.getElementById("food").innerHTML = Foodstring + "<br>";
+                
+                //back to a JS object myObject
+                var foodObject = myObject.food;
 
-            for (x in fidoString) {
-                document.getElementById("Food").innerHTML += fidoString[x] + "<br>";
             }
-            //back to a JS object myObject
-            var foodObject = myObject.food;
-            
-            //document.getElementById("Food").innerHTML = foodz;
-
         </script>
     </head>
     <body>
         <h2>Assignment w2 Ajax_TODO2</h2> <br>
-        <p id="Food">Tulostus: </p>
+        <div id="food">Tulostus: </div>
     </body>
 </html>
