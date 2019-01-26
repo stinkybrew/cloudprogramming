@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Assignment w2 AJAX_TODO2 </title>
+        <style>
+            span {cursor: pointer;}
+        </style>
+        <script>
+            // run this function when the document is loaded
+            window.onload = function() {
+
+                // create a couple of elements in an otherwise empty HTML page
+                var heading = document.createElement("ul");
+                var heading_text = document.createTextNode("Big Head!");
+                heading.appendChild(heading_text);
+                document.body.appendChild(heading);
+                
+                for (i=1; i<5; i++) {
+                    document.write("<ul>DOMTokenList</ul>") ;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h2>Assignment w2 Ajax_TODO2</h2> <br>
+        <span id="text">Test1</span>
+    </body>
+</html>
