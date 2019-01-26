@@ -10,27 +10,25 @@
             // run this function when the document is loaded
             // create a couple of elements in an otherwise empty HTML page
             window.onload = function() {
-                var list = document.createElement('ul');
+
                 var array = ['B1','B2','B3','B4','B5'];
+                var ul = document.createElement('ul');
+                document.getElementById('list').appendChild(ul);
 
-                for (var i = 0; i < array.length; i++) {
+                for (var i = 0; i < array.length; i++){
                     // Create the list item:
-                    var item = document.createElement('li');
-
+                    var li = document.createElement('li');
+                    ul.appendChild(li);
                     // Set its contents from array:
-                    var textnode = document.createTextNode(array[i]);
-                    list.appendChild(textnode);
-
-                    
+                    li.innerHTML += array[i];
                 }
-                document.body.appendChild(list);
-                return list;
             }
-
         </script>
     </head>
     <body>
         <h2>Assignment w2 Ajax_TODO2</h2> <br>
+        <div id="list"></div>
+
         <span id="text">Test1</span>
     </body>
 </html>
