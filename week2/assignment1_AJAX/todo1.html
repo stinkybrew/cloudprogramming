@@ -1,58 +1,59 @@
 <!doctype html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title> Assignment w2 TODO1 </title>
-  <style>
-	span {cursor: pointer;}
-  </style>
-  <script>
-window.onload = function() {
-    var mouseover = document.getElementById("text").onmouseover = function() {mouseOver()};
-	var div = document.getElementById("text");
-	if (div.addEventListener) {
-		div.addEventListener("click", kasittele, false);
-	} 
-    else if (div.attachEvent) {
-		div.attachEvent("click", kasittele);
-	}
-    if (mouseover.addEventListener) {
-        mouseover.addEventListener("hover", mouseOver, false);
-    } 
-    else if (mouseover.attachevent) {
-            mouseover.attachevent("hover", mouseOver);
-        }
-    }
+    <head>
+        <meta charset="utf-8">
+        <title> Assignment w2 TODO1 </title>
+        <style>
+            span {cursor: pointer;}
+        </style>
+        <script>
+            window.onload = function() {
+                var mouseover = document.getElementById("text").onmouseover = function() {mouseOver()};
+                var div = document.getElementById("text");
+
+                if (mouseover.addEventListener) {
+                    mouseover.addEventListener("mouseover", mouseOver, false);
+                } 
+                else if (mouseover.attachevent) {
+                    mouseover.attachevent("mouseover", mouseOver);
+                }
+                if (div.addEventListener) {
+                    div.addEventListener("click", kasittele, false);
+                } 
+                else if (div.attachEvent) {
+                    div.attachEvent("click", kasittele);
+                }                
+            }
 
 
-function kasittele(e) {
-	var event = e || window.event;
-	var target;
-	if (event.target) {
-		target = event.target;
-        
-	} 
-    else {
-		target = event.srcElement;
-	}
-    alert("You clicked on " + target.id);
-	
-}
-function mouseOver(i) {
-	var event = i || window.event;
-	var target;
-	if (event.target) {
-		target = event.target;
-	} 
-    else {
-		target = event.srcElement;
-	}
-	alert("You mouse overd " + target.id);
-}  
-  </script>
-</head>
-<body>
-<h2>Assignment w2 Ajax_TODO1</h2> <br>
-<span id="text">Test1. Paina tästä!</span>
-</body>
+            function kasittele(e) {
+                var event = e || window.event;
+                var target;
+                if (event.target) {
+                    target = event.target;
+
+                } 
+                else {
+                    target = event.srcElement;
+                }
+                alert("You clicked on " + target.id);
+
+            }
+            function mouseOver(i) {
+                var event = i || window.event;
+                var target;
+                if (event.target) {
+                    target = event.target;
+                } 
+                else {
+                    target = event.srcElement;
+                }
+                alert("You mouse overd " + target.id);
+            }  
+        </script>
+    </head>
+    <body>
+        <h2>Assignment w2 Ajax_TODO1</h2> <br>
+        <span id="text">Test1. Paina tästä!</span>
+    </body>
 </html>
