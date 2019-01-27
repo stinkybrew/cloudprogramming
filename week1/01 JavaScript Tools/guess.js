@@ -1,7 +1,7 @@
 let targetNumber = Math.floor(Math.random() * 10) + 1;
 var UserNumber = document.getElementById("number").value;
 var max = 5;
-var counter = 0;
+var counter = [];
 
 function init(UserNumber) {
     var UserNumber = document.getElementById("number").value;
