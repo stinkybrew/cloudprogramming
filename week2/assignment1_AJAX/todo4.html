@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Assignment w2 AJAX_TODO4</title>
+    </head>
+
+    <body>
+
+        <!-- Though, i haven't done this kind of assignment before --> 
+
+        <h2>Assignment w2 AJAX_TODO4</h2>
+
+        <form>
+            full url plz. <input type="url" id="theURL" value="">
+            <button type="button" onClick="makeRequest()" Value="request" id="goto">request</button>
+        </form>
+        <p>Click "goto" button to go to the webpage</p>
+
+        <!--<button onclick="testFunction()">go</button>-->
+        <p><strong>Note: This doesn't work quite well :/ </strong> </p>
+
+        <p id="GoTo" style="cursor: pointer; text-decoration: underline"></p>
+        <!-- testing... 
+<span id="ajaxButton" style="cursor: pointer; text-decoration: underline">
+Make a request
+</span>*/
+-->
+        <script type="text/javascript">
+
+                var testUrl = document.getElementById("theURL").value;
+                var httpRequest;
+
+                document.getElementById("goto").onclick = function() { makeRequest(testUrl); };
+
+                function makeRequest() {
+
+                    // THIS next part is so great, so i kept it here, just to remember how to seperate Http ect.
+                    if (window.XMLHttpRequest) { // Mozilla, Safari, ...
+                        httpRequest = new XMLHttpRequest();
+                        console.log("test print 1: " + testUrl); //just for debugging
+                    } 
+                    else if (window.ActiveXObject) { // IE
+                        try {
+                            httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+                            console.log("test print 2: " + testUrl); //just for debugging
+                        } 
+                        catch (e) {
+                            try {
+                                httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+                                console.log("test print 3: " + testUrl); //just for debugging
+                            } 
+                            catch (e) {}
+                        }
+                    }
+                    if (!httpRequest) {
+                        alert('Giving up :( Cannot create an XMLHTTP instance');
+                        return false;
+                    }
+                    // AJAX request
+                    httpRequest.open('GET', testUrl, false);
+                    httpRequest.send();
+                    
+                    // callback function for when the httpRequest completes
+                    httpRequest.onreadystatechange = alertContents;
+                    }
+
+                    // the callback
+                    // this will be run when the request completes (see above)
+                    function alertContents() {
+                        if (httpRequest.readyState !== 4) {
+                            alert(httpRequest.responseText);
+                        }
+                        if (httpRequest.readyState === 4) {
+                            if (httpRequest.status === 200) {
+                                alert(httpRequest.responseText);    
+                            }
+                            if (httpRequest.status === 404) {
+                                alert(httpRequest.responseText);
+                            }
+                            else {
+                                alert('Site is DOWN!');
+                            }
+                        }
+                    }
+                
+        </script>
+
+    </body>
+</html>
