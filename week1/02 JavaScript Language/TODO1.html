@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Assignment w1 02_TODO1</title>
+    </head>
+    <body>
+        <h2>Assignment w1 02_TODO1</h2>
+        <form>
+            <input type="button" onClick="removeDup()" Value="request" id="removedublicates">
+        </form>
+        <p id="GoTo" style="cursor: pointer; text-decoration: underline"></p>
+
+        <script type="text/javascript">
+            function removeDup() {
+                var arr1 = Array([1, 2, 3, 3, 4, 5, 6, 6, 7]); // alkuperäinen array
+                console.log(arr1);
+                function Array(arr) {
+                    // dublikaattien poisto for-kompleksilla
+                    for(var i = 0; i < arr.length; i++) {
+                        for(var j = i+1; j < arr.length; j++) {
+                            if(arr[i] === arr[j]) 
+                                arr.splice(j,1);
+                        }
+                    }
+                    return arr;
+                    console.log(arr); // suodatettu array tulostetaan
+                } 
+            }
+        </script>
+    </body>
+</html>
