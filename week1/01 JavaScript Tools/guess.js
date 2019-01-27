@@ -1,9 +1,8 @@
 let targetNumber = Math.floor(Math.random() * 10) + 1;
 var UserNumber = document.getElementById("number").value;
 var max = 5;
-var counter = [];
 
-function init(UserNumber) {
+function init() {
     var UserNumber = document.getElementById("number").value;
 	//This function sets up an event listener on the form.
     console.log("guess number between 1-10");
@@ -27,14 +26,16 @@ function showWin(UserNumber) {
 }
 function showError(max, counter, UserNumber) {
   //function to show a message on the console telling the player their guess is incorrect.
+    var max = 5;
+    var counter = 0;
     if (counter == max) {
         showLoss();
     }
     else {
         var UserNumber = document.getElementById("number").value;
         console.log("Your guess " + UserNumber + " was wrong!!!. guess again!");
-        console.log("Right anser was " + targetNumber);
-        console.log("you have " , counter , " attempts to go.");
+        console.log("Right anser was " + targetNumber);                         // JUST FOR TESTING IT WORKS
+        console.log("you have " , counter , " attempts to go.");                // Somehove didnt get this to work
     }
 }
 function showLoss() {
