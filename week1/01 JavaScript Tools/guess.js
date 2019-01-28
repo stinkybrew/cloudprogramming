@@ -13,9 +13,9 @@ function init() {
 }
 function check(UserNumber) {
     var UserNumber = document.getElementById("number").value;
-    //function to accept a value from the event listener and check it against the `targetNumber`.
+    //functio value from the event listener and check it against the `targetNumber`.
     if (targetNumber == UserNumber){
-        showWin();
+        showWin(); // TOIMII
     }
     else {
         showError(); //TOIMII
@@ -30,7 +30,7 @@ function showWin(UserNumber) {
 function showError(UserNumber, counter) {
     //function to show a message on the console telling the player their guess is incorrect.
     counter += 1;
-    if (counter == 5) {    // didn't get this to work
+    if (counter == 5) {    // didn't get this working
         showLoss();
     }
     else {
