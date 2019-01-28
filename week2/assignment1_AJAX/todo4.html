@@ -7,7 +7,7 @@
 
     <body>
 
-        <!-- Though, i haven't done this kind of assignment before --> 
+        <!-- Though, i haven't done this kind of assignment before -->
 
         <h2>Assignment w2 AJAX_TODO4</h2>
 
@@ -21,7 +21,7 @@
         <p><strong>Note: This doesn't work quite well :/ </strong> </p>
 
         <p id="GoTo" style="cursor: pointer; text-decoration: underline"></p>
-        <!-- testing... 
+        <!-- testing...
         <span id="ajaxButton" style="cursor: pointer; text-decoration: underline">
         Make a request
         </span>*/
@@ -37,17 +37,17 @@
                     if (window.XMLHttpRequest) { // Mozilla, Safari, ...
                         httpRequest = new XMLHttpRequest();
                         console.log("test print 1: " + testUrl); //just for debugging
-                    } 
+                    }
                     else if (window.ActiveXObject) { // IE
                         try {
                             httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
                             console.log("test print 2: " + testUrl); //just for debugging
-                        } 
+                        }
                         catch (e) {
                             try {
                                 httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
                                 console.log("test print 3: " + testUrl); //just for debugging
-                            } 
+                            }
                             catch (e) {}
                         }
                     }
@@ -58,7 +58,7 @@
                     // AJAX request
                     httpRequest.open('GET', testUrl);
                     httpRequest.send();
-                    
+
                     // callback function for when the httpRequest completes
                     httpRequest.onreadystatechange = alerts;
                     }
@@ -68,7 +68,7 @@
                     function alerts() {
                         if (httpRequest.readyState === 4) {
                             if (httpRequest.status === 200) {
-                                alert(httpRequest.responseText);    
+                                alert(httpRequest.responseText);
                             }
                             if (httpRequest.status === 404) {
                                 alert(httpRequest.responseText);
@@ -79,6 +79,5 @@
                         }
                     }
         </script>
-
     </body>
 </html>
