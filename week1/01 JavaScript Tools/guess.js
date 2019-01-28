@@ -1,3 +1,4 @@
+
 let targetNumber = Math.floor(Math.random() * 10) + 1;
 var UserNumber = document.getElementById("number").value;
 var counter;
@@ -5,8 +6,7 @@ var counter;
 // I HAD A BIT OF UNSOLVED PROBLEMS HERE. I COULDNT GET "VAR USERNAME" WORK GLOBALLY.
 // THATS WHY THIS IS A BIT OF MESS...
 
-function init(UserNumber) {
-    var UserNumber = document.getElementById("number").value;
+function init() {
     //This function sets up an event listener on the form.
     console.log("guess number between 1-10");
     check();
@@ -28,13 +28,13 @@ function showWin(UserNumber) {
     console.log(UserNumber + " was a right answer");
 }
 function showError(UserNumber) {
+    var UserNumber = document.getElementById("number").value;
     //function to show a message on the console telling the player their guess is incorrect.
     counter += 1;
     if (counter == 5) {    // didn't get this working
         showLoss();
     }
     else {
-        var UserNumber = document.getElementById("number").value;
         console.log("Your guess " + UserNumber + " was wrong!!!. guess again!");
         console.log("Right anser was " + targetNumber);                         // JUST FOR TESTING IT WORKS
         console.log("you have " , 5 - counter , " attempts to go.");
