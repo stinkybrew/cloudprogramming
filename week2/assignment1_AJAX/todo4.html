@@ -22,10 +22,10 @@
 
         <p id="GoTo" style="cursor: pointer; text-decoration: underline"></p>
         <!-- testing... 
-<span id="ajaxButton" style="cursor: pointer; text-decoration: underline">
-Make a request
-</span>*/
--->
+        <span id="ajaxButton" style="cursor: pointer; text-decoration: underline">
+        Make a request
+        </span>*/
+        -->
         <script type="text/javascript">
 
                 var testUrl = document.getElementById("theURL").value;
@@ -62,12 +62,12 @@ Make a request
                     httpRequest.send();
                     
                     // callback function for when the httpRequest completes
-                    httpRequest.onreadystatechange = alertContents;
+                    httpRequest.onreadystatechange = alerts;
                     }
 
                     // the callback
                     // this will be run when the request completes (see above)
-                    function alertContents() {
+                    function alerts() {
                         if (httpRequest.readyState !== 4) {
                             alert(httpRequest.responseText);
                         }
