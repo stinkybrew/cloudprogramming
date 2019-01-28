@@ -2,6 +2,8 @@ let targetNumber = Math.floor(Math.random() * 10) + 1;
 var UserNumber = document.getElementById("number").value;
 var counter;
 
+// I HAD A BIT OF UNSOLVED PROBLEM HERE. I COULDNT GET "VAR USERNAME" WORK GLOBALLY.
+
 function init() {
     var UserNumber = document.getElementById("number").value;
     //This function sets up an event listener on the form.
