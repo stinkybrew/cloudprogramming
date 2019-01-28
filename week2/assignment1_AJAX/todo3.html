@@ -26,7 +26,7 @@
                 document.getElementById("food").innerHTML = Foodstring + "<br>";
 
                 //back to a json
-                var foodObjects = JSON.stringify(FoodString);
+                var foodObjects = JSON.parse(FoodString);
                 food.price.flavour1 = "2,99e";
                 console.log("back to object: " + foodObjects);
                 }
