@@ -1,52 +1,73 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Object-o-matic</title>
-  <script>
-	function makeCar() {
-		var makes = ["Chevy", "GM", "Fiat", "Webville Motors", "Tucker"];
-		var models = ["Cadillac", "500", "Bel-Air", "Taxi", "Torpedo"];
-		var years = [1955, 1957, 1948, 1954, 1961];
-		var colors = ["red", "blue", "tan", "yellow", "white"];
-		var convertible = [true, false];
+    <head>
+        <meta charset="utf-8">
+        <title>Object-o-matic</title>
+        <script>
 
-		var rand1 = Math.floor(Math.random() * makes.length);
-		var rand2 = Math.floor(Math.random() * models.length);
-		var rand3 = Math.floor(Math.random() * years.length);
-		var rand4 = Math.floor(Math.random() * colors.length);
-		var rand5 = Math.floor(Math.random() * 5);
-		var rand6 = Math.floor(Math.random() * 2);
+            
+            /*  I HAD A BIT OF PRIBLEM RETURNING ENGINE. I HAD NO CLUE, WAS THE PROBLEM THAT IS RETURNED VARIABLE "ENGINE" A STING OR A OBJECT. 
+            IT JUST SAYS "UNDEFINED" ALL THE TIME. */ 
+            
+            function makeEngine() {
+                var cylinderes = [3, 4, 5, 6, 8, 10, 12];
+                var ccVolumes = ["1.2l", "1.4l", "1.9", "2.0l", "2.2l", "2.5l", "3.0l"];
+                var FuelTypes = ["fuel", "diesel", "biofuel", "electricity"];
+                var MaxTorgues = ["50Nm", "55Nm", "60Nm", "100Nm", "150Nm", "180Nm"];
 
-		var car = {
-			make: makes[rand1],
-			model: models[rand2],
-			year: years[rand3],
-			color: colors[rand4],
-			passengers: rand5,
-			convertible: convertible[rand6],
-			mileage: 0
-		};
-		return car;
-	}
+                var rand7 = Math.floor(Math.random() * cylinderes.length);
+                var rand8 = Math.floor(Math.random() * ccVolumes.length);
+                var rand9 = Math.floor(Math.random() * FuelTypes.length);
+                var rand10 = Math.floor(Math.random() * MaxTorgues.length);
 
-	function displayCar(car) {
-		console.log("Your new car is a " + car.year + " " + car.make + " " + car.model);
-	}
+                var Engine = {
+                    cylinder: cylinderes[rand7],
+                    ccVolume: ccVolumes[rand8],
+                    Fueltype: FuelTypes[rand9],
+                    MaTorgue: MaxTorgues[rand10]
+                };
+                return Engine;
+            }
+            function makeCar(Engine) {
+                var makes = ["Chevy", "GM", "Fiat", "Webville Motors", "Tucker"];
+                var models = ["Cadillac", "500", "Bel-Air", "Taxi", "Torpedo"];
+                var years = [1955, 1957, 1948, 1954, 1961];
+                var colors = ["red", "blue", "tan", "yellow", "white"];
+                var convertible = [true, false];
+                
+                var rand1 = Math.floor(Math.random() * makes.length);
+                var rand2 = Math.floor(Math.random() * models.length);
+                var rand3 = Math.floor(Math.random() * years.length);
+                var rand4 = Math.floor(Math.random() * colors.length);
+                var rand5 = Math.floor(Math.random() * 5);
+                var rand6 = Math.floor(Math.random() * 2);
+                var engines = makeEngine();
+                
+                console.log(engines + " :listatut moottorit!");
+                
+                var car = {
+                    make: makes[rand1],
+                    model: models[rand2],
+                    year: years[rand3],
+                    color: colors[rand4],
+                    passengers: rand5,
+                    convertible: convertible[rand6],
+                    mileage: 0,
+                    engine: engines 
+                };
+                console.log(engines);
+                console.log(car);
+                return car;
+            }
 
-	var carToSell = makeCar();
-	displayCar(carToSell);
-    
-    function makeEngine() {
-        var cylinderes = [];
-        var ccVolume = ["1.2l", "1.4l", "1.9", "2.0l", "2.2l", "2.5l", "3.0l"];
-        var FuelType = ["fuel", "diesel", "biofuel", "electricity"];
-        var MaxTorgue = [];
-    }
-      
+            function displayCar(car) {
+                console.log("Your new car is a " + car.year + " " + car.make + " " + car.model + ", and as engine: " + car.engines);
+            }
+            var carToSell = makeCar();
+            displayCar(carToSell);
 
-      
-  </script>
-</head>
-<body></body>
+
+        </script>
+    </head>
+    <body></body>
 </html>
