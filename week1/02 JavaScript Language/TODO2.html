@@ -11,7 +11,7 @@
             
             TIME TO TIME I HAVE HUGE PROBLEMS WITH CALLING FUNCTIONG OF VARIABLES INSIDE OR OUTSIDE OTHER FUNCTIONS. */ 
             
-            function makeEngine() {
+            function makeEngine(Engine) {
                 var cylinderes = [3, 4, 5, 6, 8, 10, 12];
                 var ccVolumes = ["1.2l", "1.4l", "1.9", "2.0l", "2.2l", "2.5l", "3.0l"];
                 var FuelTypes = ["fuel", "diesel", "biofuel", "electricity"];
@@ -45,7 +45,7 @@
                 var rand6 = Math.floor(Math.random() * 2);
                 var engines = makeEngine();
                 
-                console.log(engines + " :listatut moottorit!");
+                console.log(makeEngine(toLocaleString) + " :listatut moottorit!");
                 
                 var car = {
                     make: makes[rand1],
@@ -55,15 +55,15 @@
                     passengers: rand5,
                     convertible: convertible[rand6],
                     mileage: 0,
-                    engine: engines 
+                     
                 };
+                //console.log(engines);
                 console.log(engines);
-                console.log(car);
                 return car;
             }
 
-            function displayCar(car) {
-                console.log("Your new car is a " + car.year + " " + car.make + " " + car.model + ", and as engine: " + car.engines);
+            function displayCar(car, engines) {
+                console.log("Your new car is a " + car.year + " " + car.make + " " + car.model + ", and as engine: " + engines);
             }
             var carToSell = makeCar();
             displayCar(carToSell);
