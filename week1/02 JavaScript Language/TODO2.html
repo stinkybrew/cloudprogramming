@@ -30,7 +30,7 @@
                 };
                 return Engine;
             }
-            function makeCar(Engine) {
+            function makeCar() {
                 var makes = ["Chevy", "GM", "Fiat", "Webville Motors", "Tucker"];
                 var models = ["Cadillac", "500", "Bel-Air", "Taxi", "Torpedo"];
                 var years = [1955, 1957, 1948, 1954, 1961];
@@ -43,10 +43,10 @@
                 var rand4 = Math.floor(Math.random() * colors.length);
                 var rand5 = Math.floor(Math.random() * 5);
                 var rand6 = Math.floor(Math.random() * 2);
-                var engines = makeEngine();
+                var engine = makeEngine();
                 
-                console.log(makeEngine(toLocaleString) + " :listatut moottorit!");
-                
+                console.log(engine + " :listatut moottorit!"); // outcome = [object. object] ;(
+                var myJSONengine = JSON.stringify(engine);   // tässä testi, että "var engine" on objekti. vieläkun saisin sen "car" varrin sisään jokainen propert eriteltynä...
                 var car = {
                     make: makes[rand1],
                     model: models[rand2],
@@ -57,13 +57,14 @@
                     mileage: 0,
                      
                 };
-                //console.log(engines);
-                console.log(engines);
-                return car;
+                
+                console.log(engine.ccVolume);  // TÄSSÄ SE IHAN HYVIN TULOSTAA PROPERTYN ESIM."ccVolume"
+                console.log(car);
+                return {car, engine};
             }
-
-            function displayCar(car, engines) {
-                console.log("Your new car is a " + car.year + " " + car.make + " " + car.model + ", and as engine: " + engines);
+            console.log(engine.ccVolume);
+            function displayCar(car, engine) {
+                console.log("Your new car is a " + car.year + " " + car.make + " " + car.model + ", and as engine: " + engine.ccVolume);
             }
             var carToSell = makeCar();
             displayCar(carToSell);
