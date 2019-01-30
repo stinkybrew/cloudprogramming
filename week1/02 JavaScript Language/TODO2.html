@@ -11,7 +11,7 @@
             
             TIME TO TIME I HAVE HUGE PROBLEMS WITH CALLING FUNCTIONG OF VARIABLES INSIDE OR OUTSIDE OTHER FUNCTIONS. */ 
             
-            function makeEngine(Engine) {
+            function makeEngine() {
                 var cylinderes = [3, 4, 5, 6, 8, 10, 12];
                 var ccVolumes = ["1.2l", "1.4l", "1.9", "2.0l", "2.2l", "2.5l", "3.0l"];
                 var FuelTypes = ["fuel", "diesel", "biofuel", "electricity"];
@@ -26,7 +26,7 @@
                     cylinder: cylinderes[rand7],
                     ccVolume: ccVolumes[rand8],
                     Fueltype: FuelTypes[rand9],
-                    MaTorgue: MaxTorgues[rand10]
+                    MaTorgue: MaxTorgues[rand10],
                 };
                 return Engine;
             }
@@ -45,7 +45,7 @@
                 var rand6 = Math.floor(Math.random() * 2);
                 var engine = makeEngine();
                 
-                console.log(engine + " :listatut moottorit!"); // outcome = [object. object] ;(
+                console.log(engine + " :listatut moottorit!"); // outcome = [object. object] ;, cause "engine" is an object and text is string.
                 var myJSONengine = JSON.stringify(engine);   // tässä testi, että "var engine" on objekti. vieläkun saisin sen "car" varrin sisään jokainen propert eriteltynä...
                 var car = {
                     make: makes[rand1],
@@ -55,19 +55,25 @@
                     passengers: rand5,
                     convertible: convertible[rand6],
                     mileage: 0,
-                     
                 };
+                
+                var fullcar = Object.assign(engine, car);
                 document.write(engine[0]);    //    JUST FOR TESTING. TÄSSÄ NÄHDÄÄN, ETTEI ENGINE OLE ARRAY.
                 console.log(engine.ccVolume);  // TÄSSÄ SE IHAN HYVIN TULOSTAA PROPERTYN ESIM."ccVolume".
-                console.log(car);
-                return {car, engine};
+                console.log(fullcar.makes);
+                return fullcar;
             }
+            //console.log(Engine);      // BOTH ARE undefined = logical  :)
+            //console.log(car);         // BOTH ARE undefined = logical  :)
             //console.log(engine.ccVolume);    // Ei TOIMI ! ! ! WHY OH WHY?!
-            function displayCar(car, engine) {
-                console.log("Your new car is a " + car.year + " " + car.make + " " + car.model + ", and as engine: " + engine.ccVolume);
+            function displayCar(fullcar) {
+                console.log("Your new car is a " + fullcar.car + " " + fullcar.make + " " + fullcar.model + ", and as engine: " + fullcar.ccVolume);
             }
             var carToSell = makeCar();
-            displayCar(carToSell);
+            var engine = makeEngine();
+            var Fullcar = carToSell + engine;
+            document.write(displayCar());
+            //displayCar(Fullcar);
         </script>
     </head>
     <body></body>
