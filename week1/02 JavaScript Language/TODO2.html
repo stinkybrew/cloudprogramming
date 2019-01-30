@@ -45,8 +45,8 @@
                 var rand6 = Math.floor(Math.random() * 2);
                 var engine = makeEngine();
                 
-                console.log(engine + " :listatut moottorit!"); // outcome = [object. object] ;, cause "engine" is an object and text is string.
-                var myJSONengine = JSON.stringify(engine);   // tässä testi, että "var engine" on objekti. vieläkun saisin sen "car" varrin sisään jokainen propert eriteltynä...
+                console.log(engine + " :listatut moottorit!"); // outcome = [object. object] ;, cause "engine" is an object and text is string, so i cant use object with a string.
+                var myJSONengine = JSON.stringify(engine);   // tässä testi, että "var engine" on objekti. vieläkun saisin sen "car" varrin sisään jokainen property eriteltynä...
                 var car = {
                     make: makes[rand1],
                     model: models[rand2],
