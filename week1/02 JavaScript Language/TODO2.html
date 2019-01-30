@@ -57,8 +57,8 @@
                     mileage: 0,
                      
                 };
-                
-                console.log(engine.ccVolume);  // TÄSSÄ SE IHAN HYVIN TULOSTAA PROPERTYN ESIM."ccVolume"
+                document.write(engine[0]);    //    JUST FOR TESTING. TÄSSÄ NÄHDÄÄN, ETTEI ENGINE OLE ARRAY.
+                console.log(engine.ccVolume);  // TÄSSÄ SE IHAN HYVIN TULOSTAA PROPERTYN ESIM."ccVolume".
                 console.log(car);
                 return {car, engine};
             }
