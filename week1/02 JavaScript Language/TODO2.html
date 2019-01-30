@@ -46,7 +46,7 @@
                 var engine = makeEngine();
                 
                 console.log(engine + " :listatut moottorit!"); // outcome = [object. object] ;, cause "engine" is an object and text is string, so i cant use object with a string.
-                var myJSONengine = JSON.stringify(engine);   // tässä testi, että "var engine" on objekti. vieläkun saisin sen "car" varrin sisään jokainen property eriteltynä...
+                //var myJSONengine = JSON.stringify(engine);   // tässä testi, että "var engine" on objekti. vieläkun saisin sen "car" varrin sisään jokainen property eriteltynä...
                 var car = {
                     make: makes[rand1],
                     model: models[rand2],
@@ -58,22 +58,19 @@
                 };
                 
                 var fullcar = Object.assign(engine, car);
-                document.write(engine[0]);    //    JUST FOR TESTING. TÄSSÄ NÄHDÄÄN, ETTEI ENGINE OLE ARRAY.
-                console.log(engine.ccVolume);  // TÄSSÄ SE IHAN HYVIN TULOSTAA PROPERTYN ESIM."ccVolume".
-                console.log(fullcar.makes);
+                //document.write(engine[0]);      //    JUST FOR TESTING. TÄSSÄ NÄHDÄÄN, ETTEI ENGINE OLE ARRAY.
+                //console.log(engine.ccVolume);   //    TÄSSÄ SE IHAN HYVIN TULOSTAA PROPERTYN ESIM."ccVolume".
+                //console.log(fullcar.make);      //    TOIMII!  
                 return fullcar;
             }
             //console.log(Engine);      // BOTH ARE undefined = logical  :)
             //console.log(car);         // BOTH ARE undefined = logical  :)
             //console.log(engine.ccVolume);    // Ei TOIMI ! ! ! WHY OH WHY?!
             function displayCar(fullcar) {
-                console.log("Your new car is a " + fullcar.car + " " + fullcar.make + " " + fullcar.model + ", and as engine: " + fullcar.ccVolume);
+                console.log("Your new car is a " + fullcar.year + " " + fullcar.make + " " + fullcar.model + ", and as engine: " + fullcar.ccVolume + " " + fullcar.Fueltype + " V" + fullcar.cylinder );
             }
             var carToSell = makeCar();
-            var engine = makeEngine();
-            var Fullcar = carToSell + engine;
-            document.write(displayCar());
-            //displayCar(Fullcar);
+            displayCar(carToSell);
         </script>
     </head>
     <body></body>
