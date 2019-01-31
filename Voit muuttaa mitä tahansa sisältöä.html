@@ -1,0 +1,90 @@
+<img id="myimg" src="orange.png" alt="" />
+<script>
+var el = document.getElementById("myimg");
+el.src = "apple.png";
+</script>
+
+<!--  TAI   -->
+
+<a href="http://www.example.com">Some link</a>
+<script>
+var el = document.getElementsByTagName("a");
+el[0].href = "http://www.sololearn.com";
+</script>
+
+<!--  TAI LUODA TÄYSIN UUDEN ELEMENTIN <P>  -->
+
+<div id ="demo">some content</div>
+
+<script>
+  //creating a new paragraph
+  var p = document.createElement("p");
+  var node = document.createTextNode("Some new text");
+  //adding the text to the paragraph
+  p.appendChild(node);
+
+  var div = document.getElementById("demo");
+  //adding the paragraph to the div
+  div.appendChild(p);
+</script>
+
+<!-- Voit asetella uudet elementit mihin järjestykseen haluat -->
+
+<script>
+var el = document.createElement ("li");
+var txt = document.createTextNode("B");
+el.appendChild(txt);
+var ul = document.getElementById ("list");
+ul.appendChild (el);
+</script>
+
+<!-- To remove an HTML element, you must select the parent of the element and use the removeChild(node) method. -->
+
+<div id="demo">
+  <p id="p1">This is a paragraph.</p>
+  <p id="p2">This is another paragraph.</p>
+</div>
+
+<script>
+var parent = document.getElementById("demo");
+var child = document.getElementById("p1");
+parent.removeChild(child);
+    
+//An alternative way of achieving the same result would be the use of the parentNode property to get the parent of the element we want to remove:
+var child = document.getElementById("p1");
+child.parentNode.removeChild(child);    
+</script>
+
+<!-- To replace an HTML element, the element.replaceChild(newNode, oldNode) method is used. -->
+
+<div id="demo">
+  <p id="p1">This is a paragraph.</p>
+  <p id="p2">This is another paragraph.</p>
+</div>
+
+<script>
+var p = document.createElement("p");
+var node = document.createTextNode("This is new");
+p.appendChild(node);
+
+var parent = document.getElementById("demo");
+var child = document.getElementById("p1");
+parent.replaceChild(p, child);
+</script>
+
+<!-- To replace an HTML element, the element.replaceChild(newNode, oldNode) method is used. -->
+
+<script>
+//calling the function in window.onload to make sure the HTML is loaded
+window.onload = function() {
+    var p = document.createElement("p");
+    var node = document.createTextNode("This is new");
+    p.appendChild(node);
+
+    var parent = document.getElementById("demo");
+    var child = document.getElementById("p1");
+    parent.replaceChild(p, child);
+};
+</script>
+
+<!--  -->
