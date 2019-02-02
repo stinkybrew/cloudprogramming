@@ -15,14 +15,12 @@
             <p><input v-model="x"> first number</p>
             <p><input v-model="y"> second number</p>
             <p>---------------------</p>
-            <button v-on:click="result" type="submit">new multiply button</button> 
-            <button v-on:click="result" type="submit">new divide button</button>
-            <input type="button" onClick="multiplyBy(), checkInp()" Value="Multiply" id="multiply" />
-            <input type="button" onClick="divideBy(), checkInp()" Value="Divide" id="divide"/>
-            <input type="reset" value="Clear inputs" />
-            <!-- EN NYT SAANUT NAPPIA TOIMIMAAN 3tunnin googlettamisen kanssa, muuten Vue:n logiikka on ymmärretty. Olisipa saanut tähän toimivaa esimerkkiä, niin olisi jotain mihin verrata -->
-            <!-- KOETIN KÄYTTÄÄ "V-BUTTON" TYYLIÄ JA MYÖS YLLÄ NÄHTÄVÄÄ "Z-ON:CLICK". --> 
-            <p>= <span v-text="result"></span></p>
+            <button @click="reslustmsg" id="reslustmsg">new multiply button</button> 
+            <!-- <button v-on:click="result2">new divide button</button> -->
+            >
+            <!-- EN NYT SAANUT NAPPIA TOIMIMAAN 3tunnin googlettamisen kanssa, muuten Vue:n logiikka on ymmärretty. Olisipa saanut tähän toimivaa esimerkkiä, niin olisi jotain mihin verrata. ENS SAA TOIMIMAAN NAPIN PAINALLUKSEN KAUTTA.-->
+            <p> ... </p>
+            <p>= <span v-text="result1"></span></p>
         </div>
 
         <script type="text/javascript">
@@ -57,12 +55,12 @@
             } */
 
             //calculation's
+
             var multiply = new Vue({
                 el: '#calk',
                 data: { x: 0, y: 0, lastResult: 0 },
                 computed: {
-                    result: function() {
-                        if(document.getElementById("Multiply") = true) {
+                    result1: function() {
                         console.log("testi multiply");
                         let x = parseFloat(this.x);
                         if(isNotNumericValue(x))
@@ -73,17 +71,17 @@
                             return this.lastResult;
 
                         this.lastResult = x * y;
+                        document.getElementById('reslustmsg').onclick == return this.lastResult;    
 
-                        return this.lastResult;
+                        }
                     }
-                }
-                }
+
             });
-            var divide = new Vue({
+            /* var divide = new Vue({
                 el: '#calk',
                 data: { x: 0, y: 0, lastResult: 0 },
                 computed: {
-                    result: function() {
+                    result2: function() {
                         let x = parseFloat(this.x);
                         if(isNotNumericValue(x))
                             return this.lastResult;
@@ -97,7 +95,7 @@
                         return this.lastResult;
                     }
                 }
-            });
+            }); */
         </script>
     </body>
 </html>
