@@ -15,16 +15,8 @@
             <p><input v-model="x"> first number</p>
             <p><input v-model="y"> second number</p>
             <p>---------------------</p>
-            <button v-on:click="result1" >new divide button</button>
-            <button v-on:click="result2">new divide button</button>
-        <!--    <form v-on:submit="sub" action="#" method="post">
-                <p><input v-model="x"> first number</p>
-                <p><input v-model="y"> second number</p>
-                <p>---------------------</p>
-            </form>
-            <!--    <button type="submit" id="resultmsg1">Multiply</button>
-<button type="submit" id="resultmsg2">Divide</button> -->
-            <!-- <button v-on:click="result2" id="resultmsg2">new divide button</button>  -->
+            <button v-on:click="result1" type="button">new divide button</button>
+            <button v-on:click="result2" type="button">new divide button</button>
 
             <!-- EN NYT SAANUT NAPPIA TOIMIMAAN 3tunnin googlettamisen kanssa, muuten Vue:n logiikka on ymmärretty. Olisipa saanut tähän toimivaa esimerkkiä, niin olisi jotain mihin verrata. ENS SAA TOIMIMAAN NAPIN PAINALLUKSEN KAUTTA.-->
             <p> ... </p>
@@ -61,16 +53,29 @@
                     return false; 
                 }
             } */
-            //var kertoz = kerto();
-            //var jakoz = jako();
-            //calculation's
-            //document.getElementById("resultmsg1").addEventListener("click", kerto);
+            
+            
+            //OLD CODE!!!!!
+            //calculation
+            function multiplyBy(){
+
+	           document.getElementById("result").innerHTML =
+	           document.getElementById("firstNumber").value * document.getElementById("secondNumber").value;
+            }
+            function divideBy(){
+
+	           document.getElementById("result").innerHTML =
+	           document.getElementById("firstNumber").value / document.getElementById("secondNumber").value;
+            }
+            
+            
+            
             // function kerto() {
                 var multiply = new Vue({
                     el: '#calk',
                     data: { x: 0, y: 0, lastResult: 0 },
                     computed: {
-                        result: function() {
+                        result1: function() {
                             console.log("testi multiply");
                             let x = parseFloat(this.x);
                             if(isNotNumericValue(x))
@@ -79,17 +84,18 @@
                             let y = parseFloat(this.y);
                             if(isNotNumericValue(y))
                                 return this.lastResult;
-
+                            if ()  {
                             this.lastResult = x * y;
                             return this.lastResult;    
+                            }
                         }
                     }
                 });
-            console.log(result);
+           // console.log(result);
 
             //document.getElementById("resultmsg1").addEventListener("click", jako);
             //function jako() {            
-                var divide = new Vue({
+     /*           var divide = new Vue({
                     el: '#calk',
                     data: { x: 0, y: 0, lastResult: 0 },
                     computed: {
@@ -107,7 +113,7 @@
                             return this.lastResult;    
                         }
                     }
-                });
+                }); */
        
         </script>
     </body>
