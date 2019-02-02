@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>w3. 01. TODO1</title>
+        <style>
+            p, input { font-family: monospace; }
+            p { white-space: pre; }
+        </style>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <h2>w3 01 TODO1</h2>
+        <br/>
+        <div id="calk">
+            <p><input v-model="x"> first number</p>
+            <p><input v-model="y"> second number</p>
+            <p>---------------------</p>
+            <button type="submit">Confirm Tickets</button>
+            <v-button v-on:click="multiplyBy, checkInp">new multiply button</v-button>
+            <v-button v-on:click="divideBy, checkInp">new divide button</v-button>
+            <p>= <span v-text="lastResult"></span></p>
+        </div>
+
+        <script type="text/javascript">
+            function isNotNumericValue(value) {
+                return isNaN(value) || !isFinite(value);
+            }
+
+            //Here i chech if input i valid
+            /* function checkInp()
+            {
+                var x=document.getElementById("firstNumber").value;
+                var regex=/^[0a-zA-Z]+$/;
+                if (x.match(regex)) {
+                    alert("input must be numbers and bigger than 0");
+                    return false;
+                }
+                if (x < 1) {
+                    alert("input number should be bigger that 0");
+                    return false;
+                }
+                var x=document.getElementById("secondNumber").value;
+                var regex=/^[a-zA-Z]+$/;
+                if (x.match(regex)) {
+                    alert("input must be numbers and bigger than 0");
+                    return false;
+                }
+                if (x < 1) {
+                    alert("input number should be bigger that 0");
+                    return false; 
+                }
+            } */
+
+            //calculation's
+            function multiplyBy() = new Vue({
+                el: '#calk',
+                data: { x: 0, y: 0, lastResult: 0 },
+                computed: {
+                    result: function() {
+                        let x = parseFloat(this.x);
+                        if(isNotNumericValue(x))
+                            return this.lastResult;
+
+                        let y = parseFloat(this.y);
+                        if(isNotNumericValue(y))
+                            return this.lastResult;
+
+                        this.lastResult = x * y;
+
+                        return this.lastResult;
+                    }
+                }
+            })
+            function divideBy() = new Vue({
+                el: '#calk',
+                data: { x: 0, y: 0, lastResult: 0 },
+                computed: {
+                    result: function() {
+                        let x = parseFloat(this.x);
+                        if(isNotNumericValue(x))
+                            return this.lastResult;
+
+                        let y = parseFloat(this.y);
+                        if(isNotNumericValue(y))
+                            return this.lastResult;
+
+                        this.lastResult = x / y;
+
+                        return this.lastResult;
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
