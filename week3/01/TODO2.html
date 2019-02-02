@@ -13,8 +13,9 @@
             <p>y <input v-model="y"></p>
             <p>---------------------</p>
             <p>= <span v-text="result"></span></p>
+           <!--  <p>storagesta saatu arvo: <span v-text="number"></span></p>  -->
         </div>
-        <p>storagesta saatu arvo: <span v-text="number"></span></p>
+
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
         <script type="text/javascript">
             function isNotNumericValue(value) {
@@ -34,20 +35,19 @@
                             return this.lastResult;
 
                         this.lastResult = x + y;
-
                         return this.lastResult;
+
+                        // Tällä laskettu arvo tallennetaan storageen
+                        const calculations = this.lastResult;
+
+                        localStorage.setItem('number', JSON.stringify(calculations));
+                        // Tällä arvo saadaa storagesta
+                        localStorage.getItem('number');
+                        JSON.parse(window.localStorage.getItem('number'));
+                        console.log("number");
                     }
                 }
             });
-            // Tällä laskettu arvo tallennetaan storageen
-            const calculations = {
-                ress1: this.lastResult
-            }
-            localStorage.setItem('number', JSON.stringify(calculations));
-
-            // Tällä arvo saadaa storagesta
-            localStorage.getItem('number');
         </script>
-
     </body>
 </html>
