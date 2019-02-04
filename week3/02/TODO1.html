@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>w3 01 TODO1-2</title>
+        <title>w3 02 TODO1</title>
         <style>
             p, input { font-family: monospace; }
             p { white-space: pre; }
         </style>
     </head>
     <body>
-        <h2>w3 01 TODO1-2</h2>
+        <h2>w3 02 TODO1</h2>
         <form id="app" @submit.prevent="formSubmit">
             <div >
                 <p>x <input v-model="x"></p>
@@ -69,30 +69,6 @@
                         localStorage.setItem('myCat');
                         return this.lastmultiply;
                     },
-                    divide: function() {
-                        console.log("testi divide-functio");
-                        this.lastdivide = this.x / this.y;
-
-                        // Tällä laskettu arvo tallennetaan storageen
-                        const calculations = this.lastdivide;
-                        localStorage.setItem('lastdiv', JSON.stringify(calculations));
-                        return this.lastmultiply;
-                    },
-                    formSubmit: function(event) {
-                        // clear input values :P
-                        this.x = this.y = '';
-                    },
-                    getfromstorage: function() {
-                        // Tällä arvo saadaa storagesta
-                        // localStorage.getItem('getstor');
-                        //app.input = localStorage.getItem('getstor');
-                        var cat = localStorage.getItem('myCat');
-                        JSON.parse(window.localStorage.getItem('lastmult'));
-                        console.log("multiply haku testi");
-                        console.log("myCat");
-                        return this.myCat;
-                        return localStorage.getItem( 'lastmult' );
-                    }
                 }
             });
         </script>
