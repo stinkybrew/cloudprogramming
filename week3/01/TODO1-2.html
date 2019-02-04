@@ -16,14 +16,15 @@
                 <button v-on:click="multiply">multiply</button>
                 <button v-on:click="divide">divide</button>
                 <output>
-                    <p>add answer: = <span v-text="result"></span></p>
+                    <p>adding answer: = <span v-text="result"></span></p>
                     <!--  <p>storagesta saatu arvo: <span v-text="number"></span></p>  -->
                     <p>divide answer: = <span v-text="lastdivide"></span></p>
                     <p>multiply answer: = <span v-text="lastmultiply"></span></p>
                 </output>
+                <button v-on:click="getfromstorage">get data from storage</button>
+                <p>Storagesta haettu arvo: <span v-text="myCat"></span></p>
             </div>
         </form>
-        <!--  I HAD HUGE PROBLEMS TO GET SIMPLE BUMMON TO WORK!  -->
 
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
         <script type="text/javascript">
@@ -32,7 +33,7 @@
             }
             var calc = new Vue({
                 el: '#app',
-                data: { x: 0, y: 0, lastResult: 0, lastmultiply: 0, lastdivide: 0},
+                data: { x: 0, y: 0, lastResult: 0, lastmultiply: 0, lastdivide: 0, myCat: ""},
                 computed: {
                     result: function() {
                         let x = parseFloat(this.x);
@@ -48,8 +49,8 @@
 
                         // Tällä laskettu arvo tallennetaan storageen
                         const calculations = this.lastResult;
-
                         localStorage.setItem('number', JSON.stringify(calculations));
+
                         // Tällä arvo saadaa storagesta
                         localStorage.getItem('number');
                         JSON.parse(window.localStorage.getItem('number'));
@@ -59,67 +60,40 @@
                 methods: {
                     multiply: function() {
                         console.log("testi multiply-functio");
-
                         this.lastmultiply = this.x * this.y;
 
                         // Tällä laskettu arvo tallennetaan storageen
                         const calculations = this.lastmultiply;
-                        localStorage.setItem('numbermultiply', JSON.stringify(calculations));
+                        //localStorage.setItem(calculations, JSON.stringify(calculations));
+                        localStorage.setItem('myCat');
                         return this.lastmultiply;
                     },
                     divide: function() {
                         console.log("testi divide-functio");
-
                         this.lastdivide = this.x / this.y;
 
                         // Tällä laskettu arvo tallennetaan storageen
                         const calculations = this.lastdivide;
-                        localStorage.setItem('numberdivide', JSON.stringify(calculations));
+                        localStorage.setItem('lastdiv', JSON.stringify(calculations));
                         return this.lastmultiply;
                     },
                     formSubmit: function(event) {
-                        this.submitted.x = this.x;
-                        this.submitted.y = this.y;
-
+                        // clear input values :P
                         this.x = this.y = '';
-
-                        event.target.reset();
+                    },
+                    getfromstorage: function() {
+                        // Tällä arvo saadaa storagesta
+                        // localStorage.getItem('getstor');
+                        //app.input = localStorage.getItem('getstor');
+                        var cat = localStorage.getItem('myCat');
+                        JSON.parse(window.localStorage.getItem('lastmult'));
+                        console.log("multiply haku testi");
+                        console.log("myCat");
+                        return this.myCat;
+                        return localStorage.getItem( 'lastmult' );
                     }
                 }
             });
-            function checkInp()
-            {
-                var x=document.getElementById("x").value;
-                var regex=/^[0a-zA-Z]+$/;
-                if (x.match(regex)) {
-                    alert("input must be numbers and bigger than 0");
-                    return false;
-                }
-                if (x < 1) {
-                    alert("input number should be bigger that 0");
-                    return false;
-                }
-                var x=document.getElementById("y").value;
-                var regex=/^[a-zA-Z]+$/;
-                if (x.match(regex)) {
-                    alert("input must be numbers and bigger than 0");
-                    return false;
-                }
-                if (x < 1) {
-                    alert("input number should be bigger that 0");
-                    return false; 
-                }
-            } 
-            function multiplyBy(){
-
-                document.getElementById("result").innerHTML =
-                    document.getElementById("x").value * document.getElementById("y").value;
-            }
-            function divideBy(){
-
-                document.getElementById("result").innerHTML =
-                    document.getElementById("x").value / document.getElementById("y").value;
-            }
         </script>
     </body>
 </html>
