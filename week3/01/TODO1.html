@@ -13,17 +13,18 @@
         <br/>
         <form>
             <div id="calk">
-                <p><input v-model="x"> first number</p>
-                <p><input v-model="y"> second number</p>
+                <p><input v-model="x" lazy> first number</p>
+                <p><input v-model="y" lazy> second number</p>
                 <p>---------------------</p>
-                <button v-on:click="lasku" type="button">new Multiply button</button>
+                <button v-on:click="result" type="submit">new Multiply button</button>
                 <!-- <button v-on:click="result2" type="button">new divide button</button> -->
 
                 <!-- EN NYT SAANUT NAPPIA TOIMIMAAN 3tunnin googlettamisen kanssa, muuten Vue:n logiikka on ymmärretty. Olisipa saanut tähän toimivaa esimerkkiä, niin olisi jotain mihin verrata. 
 ENS SAA TOIMIMAAN NAPIN PAINALLUKSEN KAUTTA.-->
 
                 <p> ... </p>
-                <p>= <span v-text="result"></span></p>
+                <span>Message is: {{ lasku }}</span>
+                <p>= <span v-text="result1"></span></p>
             </div>
         </form>
         <script type="text/javascript">
@@ -73,13 +74,13 @@ ENS SAA TOIMIMAAN NAPIN PAINALLUKSEN KAUTTA.-->
                     document.getElementById("firstNumber").value / document.getElementById("secondNumber").value;
             }
         */
-     
+           function lasku() {
                 console.log("testi functiotesti");
                 var multiply = new Vue({
                     el: '#calk',
                     data: { x: 0, y: 0, lastResult: 0 },
                     computed: {
-                        result1: function(lasku) {
+                        result1: function() {
                             console.log("testi multiply");
                             let x = parseFloat(this.x);
                             if(isNotNumericValue(x))
@@ -88,7 +89,7 @@ ENS SAA TOIMIMAAN NAPIN PAINALLUKSEN KAUTTA.-->
                             let y = parseFloat(this.y);
                             if(isNotNumericValue(y))
                                 return this.lastResult;
-                            this.lastResult = x + y;
+                            this.lastResult = x * y;
                             return this.lastResult;
 
                             // Tällä laskettu arvo tallennetaan storageen
@@ -96,12 +97,12 @@ ENS SAA TOIMIMAAN NAPIN PAINALLUKSEN KAUTTA.-->
                         }
                     }
                 });
-            
-                // console.log(result);
+            }
+            // console.log(result);
 
-                //document.getElementById("resultmsg1").addEventListener("click", jako);
-                //function jako() {            
-                /*           var divide = new Vue({
+            //document.getElementById("resultmsg1").addEventListener("click", jako);
+            //function jako() {            
+            /*           var divide = new Vue({
                     el: '#calk',
                     data: { x: 0, y: 0, lastResult: 0 },
                     computed: {
