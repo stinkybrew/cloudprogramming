@@ -8,16 +8,21 @@
         </style>
     </head>
     <body>
-        <div id="app">
-            <p>x <input v-model="x"></p>
-            <p>y <input v-model="y"></p>
-            <p>---------------------</p>
-            <p>= <span v-text="result"></span></p>
-            <!--  <p>storagesta saatu arvo: <span v-text="number"></span></p>  -->
-            <button v-on:click="multiply">new Multiply button</button>
-            <p>multiply answer: = <span v-text="lastmultiply"></span></p>
-        </div>
-
+        <form id="app" @submit.prevent="formSubmit">
+            <div >
+                <p>x <input v-model="x"></p>
+                <p>y <input v-model="y"></p>
+                <p>---------------------</p><br>
+                <button v-on:click="multiply">multiply</button>
+                <button v-on:click="divide">divide</button>
+                <output>
+                    <p>add answer: = <span v-text="result"></span></p>
+                    <!--  <p>storagesta saatu arvo: <span v-text="number"></span></p>  -->
+                    <p>divide answer: = <span v-text="lastdivide"></span></p>
+                    <p>multiply answer: = <span v-text="lastmultiply"></span></p>
+                </output>
+            </div>
+        </form>
         <!--  I HAD HUGE PROBLEMS TO GET SIMPLE BUMMON TO WORK!  -->
 
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -27,7 +32,7 @@
             }
             var calc = new Vue({
                 el: '#app',
-                data: { x: 0, y: 0, lastResult: 0, lastmultiply: 0},
+                data: { x: 0, y: 0, lastResult: 0, lastmultiply: 0, lastdivide: 0},
                 computed: {
                     result: function() {
                         let x = parseFloat(this.x);
@@ -58,9 +63,27 @@
                         this.lastmultiply = this.x * this.y;
 
                         // Tällä laskettu arvo tallennetaan storageen
-                        const calculations = this.lastResult;
-                        localStorage.setItem('number', JSON.stringify(calculations));
+                        const calculations = this.lastmultiply;
+                        localStorage.setItem('numbermultiply', JSON.stringify(calculations));
                         return this.lastmultiply;
+                    },
+                    divide: function() {
+                        console.log("testi divide-functio");
+
+                        this.lastdivide = this.x / this.y;
+
+                        // Tällä laskettu arvo tallennetaan storageen
+                        const calculations = this.lastdivide;
+                        localStorage.setItem('numberdivide', JSON.stringify(calculations));
+                        return this.lastmultiply;
+                    },
+                    formSubmit: function(event) {
+                        this.submitted.x = this.x;
+                        this.submitted.y = this.y;
+
+                        this.x = this.y = '';
+
+                        event.target.reset();
                     }
                 }
             });
