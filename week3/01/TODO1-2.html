@@ -23,7 +23,8 @@
                     <p>multiply answer: = <span v-text="lastmultiply"></span></p>
                 </output>
                 <button v-on:click="getfromstorage">get data from storage</button>
-                <p>Storagesta haettu arvo: <span v-text="myCat"></span></p>
+                <p>Storagesta multiply:n haettu arvo: {{lastmult}}</p><br>
+                <button v-on:click="clearLocal">Clear localstorage</button>
             </div>
         </form>
 
@@ -34,7 +35,7 @@
             }
             var calc = new Vue({
                 el: '#app',
-                data: { x: 0, y: 0, lastResult: 0, lastmultiply: 0, lastdivide: 0, myCat: ""},
+                data: { x: 0, y: 0, lastResult: 0, lastmultiply: 0, lastdivide: 0, lastmult: ""},
                 computed: {
                     result: function() {
                         let x = parseFloat(this.x);
@@ -47,15 +48,6 @@
 
                         this.lastResult = x + y;
                         return this.lastResult;
-
-                        // Tällä laskettu arvo tallennetaan storageen
-                        const calculations = this.lastResult;
-                        localStorage.setItem('number', JSON.stringify(calculations));
-
-                        // Tällä arvo saadaa storagesta
-                        localStorage.getItem('number');
-                        JSON.parse(window.localStorage.getItem('number'));
-                        console.log("number");
                     }
                 },
                 methods: {
@@ -66,7 +58,7 @@
                         // Tällä laskettu arvo tallennetaan storageen
                         const calculations = this.lastmultiply;
                         //localStorage.setItem(calculations, JSON.stringify(calculations));
-                        localStorage.setItem('myCat', JSON.stringify(calculations));
+                        localStorage.setItem('lastmulti', JSON.stringify(calculations));
                         return this.lastmultiply;
                     },
                     divide: function() {
@@ -85,12 +77,19 @@
                     getfromstorage: function() {
                         // Tällä arvo saadaa storagesta
                         // Tässä aivan kokeiluksi kutsun ja tulostelen jocalstoragesta arvoja
-                        var cat = localStorage.getItem('myCat');
-                        JSON.parse(window.localStorage.getItem('lastmult'));
-                        console.log("multiply haku testi");
-                        console.log(cat);
-                        return this.myCat;
-                        return localStorage.getItem( 'lastmult' );
+                        var LASTDIV = localStorage.getItem('lastdiv');
+                        var LASTMULT = JSON.parse(window.localStorage.getItem('lastmulti'));
+                        this.lastmult = LASTMULT;
+                        this.lastdiv = LASTDIV;
+                        console.log("Haku-functio testi");
+                        console.log(lastmult);
+                        console.log(LASTMULT);                      
+                        // return localStorage.getItem( 'lastmult' );
+                        return this.lastmult;
+                        return this.LASTMULT;
+                    },
+                    clearLocal: function() {
+                        localStorage.clear();
                     }
                 }
             });
