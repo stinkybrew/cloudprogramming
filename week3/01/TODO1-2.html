@@ -1,98 +1,102 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>w3 01 TODO1-2</title>
-        <style>
-            p, input { font-family: monospace; }
+
+<head>
+    <title>w3 01 TODO1-2</title>
+    <style>
+        p, input { font-family: monospace; }
             p { white-space: pre; }
         </style>
-    </head>
-    <body>
-        <h2>w3 01 TODO1-2</h2>
-        <form id="app" @submit.prevent="formSubmit">
-            <div >
-                <p>x <input v-model="x"></p>
-                <p>y <input v-model="y"></p>
-                <p>---------------------</p><br>
-                <button v-on:click="multiply">multiply</button>
-                <button v-on:click="divide">divide</button>
-                <output>
-                    <p>adding answer: = <span v-text="result"></span></p>
-                    <!--  <p>storagesta saatu arvo: <span v-text="number"></span></p>  -->
-                    <p>divide answer: = <span v-text="lastdivide"></span></p>
-                    <p>multiply answer: = <span v-text="lastmultiply"></span></p>
-                </output>
-                <button v-on:click="getfromstorage">get data from storage</button>
-                <p>Storagesta multiply:n haettu arvo: {{lastmult}}</p><br>
-                <button v-on:click="clearLocal">Clear localstorage</button>
-            </div>
-        </form>
+</head>
 
-        <script src="https://unpkg.com/vue/dist/vue.js"></script>
-        <script type="text/javascript">
-            function isNotNumericValue(value) {
-                return isNaN(value) || !isFinite(value);
-            }
-            var calc = new Vue({
-                el: '#app',
-                data: { x: 0, y: 0, lastResult: 0, lastmultiply: 0, lastdivide: 0, lastmult: ""},
-                computed: {
-                    result: function() {
-                        let x = parseFloat(this.x);
-                        if(isNotNumericValue(x))
-                            return this.lastResult;
+<body>
+    <h2>w3 01 TODO1-2</h2>
+    <form id="app" @submit.prevent="formSubmit">
+        <div>
+            <p>x <input v-model="x"></p>
+            <p>y <input v-model="y"></p>
+            <p>---------------------</p><br>
+            <button v-on:click="multiply">multiply</button>
+            <button v-on:click="divide">divide</button>
+            <output>
+                <p>adding answer: = <span v-text="result"></span></p>
+                <!--  <p>storagesta saatu arvo: <span v-text="number"></span></p>  -->
+                <p>divide answer: = <span v-text="lastdivide"></span></p>
+                <p>multiply answer: = <span v-text="lastmultiply"></span></p>
+            </output>
+            <button v-on:click="getfromstorage">get data from storage</button>
+            <p>Storagesta multiply:n haettu arvo: {{lastmult}}</p><br>
+            <p>Storagesta Dividen haettu arvo: {{lastdiv}}</p>
+            <button v-on:click="clearLocal">Clear localstorage</button>
+        </div>
+    </form>
 
-                        let y = parseFloat(this.y);
-                        if(isNotNumericValue(y))
-                            return this.lastResult;
-
-                        this.lastResult = x + y;
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+        function isNotNumericValue(value) {
+            return isNaN(value) || !isFinite(value);
+        }
+        var calc = new Vue({
+            el: '#app',
+            data: { x: 0, y: 0, lastResult: 0, lastmultiply: 0, lastdivide: 0, lastmult: "", lastdiv: "" },
+            computed: {
+                result: function () {
+                    let x = parseFloat(this.x);
+                    if (isNotNumericValue(x))
                         return this.lastResult;
-                    }
-                },
-                methods: {
-                    multiply: function() {
-                        console.log("testi multiply-functio");
-                        this.lastmultiply = this.x * this.y;
 
-                        // Tällä laskettu arvo tallennetaan storageen
-                        const calculations = this.lastmultiply;
-                        //localStorage.setItem(calculations, JSON.stringify(calculations));
-                        localStorage.setItem('lastmulti', JSON.stringify(calculations));
-                        return this.lastmultiply;
-                    },
-                    divide: function() {
-                        console.log("testi divide-functio");
-                        this.lastdivide = this.x / this.y;
+                    let y = parseFloat(this.y);
+                    if (isNotNumericValue(y))
+                        return this.lastResult;
 
-                        // Tällä laskettu arvo tallennetaan storageen
-                        const calculations = this.lastdivide;
-                        localStorage.setItem('lastdiv', JSON.stringify(calculations));
-                        return this.lastmultiply;
-                    },
-                    formSubmit: function(event) {
-                        // clear input values :P
-                        this.x = this.y = '';
-                    },
-                    getfromstorage: function() {
-                        // Tällä arvo saadaa storagesta
-                        // Tässä aivan kokeiluksi kutsun ja tulostelen jocalstoragesta arvoja
-                        var LASTDIV = localStorage.getItem('lastdiv');
-                        var LASTMULT = JSON.parse(window.localStorage.getItem('lastmulti'));
-                        this.lastmult = LASTMULT;
-                        this.lastdiv = LASTDIV;
-                        console.log("Haku-functio testi");
-                        console.log(lastmult);
-                        console.log(LASTMULT);                      
-                        // return localStorage.getItem( 'lastmult' );
-                        return this.lastmult;
-                        return this.LASTMULT;
-                    },
-                    clearLocal: function() {
-                        localStorage.clear();
-                    }
+                    this.lastResult = x + y;
+                    return this.lastResult;
                 }
-            });
-        </script>
-    </body>
+            },
+            methods: {
+                multiply: function () {
+                    console.log("testi multiply-functio");
+                    this.lastmultiply = this.x * this.y;
+
+                    // Tällä laskettu arvo tallennetaan storageen
+                    const calculations = this.lastmultiply;
+                    //localStorage.setItem(calculations, JSON.stringify(calculations));
+                    localStorage.setItem('lastmulti', JSON.stringify(calculations));
+                    return this.lastmultiply;
+                },
+                divide: function () {
+                    console.log("testi divide-functio");
+                    this.lastdivide = this.x / this.y;
+
+                    // Tällä laskettu arvo tallennetaan storageen
+                    const calculations = this.lastdivide;
+                    localStorage.setItem('lastdiv', JSON.stringify(calculations));
+                    return this.lastmultiply;
+                },
+                formSubmit: function (event) {
+                    // clear input values :P
+                    this.x = this.y = '';
+                },
+                getfromstorage: function () {
+                    // Tällä arvo saadaa storagesta
+                    // Tässä aivan kokeiluksi kutsun ja tulostelen jocalstoragesta arvoja
+                    var LASTDIV = localStorage.getItem('lastdiv');
+                    var LASTMULT = JSON.parse(window.localStorage.getItem('lastmulti'));
+                    this.lastmult = LASTMULT;
+                    this.lastdiv = LASTDIV;
+                    console.log("Haku-functio testi");
+                    console.log(LASTDIV);
+                    console.log(LASTMULT);
+                    // return localStorage.getItem( 'lastmult' );
+                    return this.lastmult;
+                    return this.lastdiv;
+                },
+                clearLocal: function () {
+                    localStorage.clear();
+                }
+            }
+        });
+    </script>
+</body>
+
 </html>
