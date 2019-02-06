@@ -14,7 +14,7 @@
       <div class="nav navbar-nav navbar-right cart">
         <form action="forms.html">
           <button type="submit" class="btn btn-default btn-lg" v-on:click="showCheckout">
-            <span class="glyphicon glyphicon-shopping-cart">{{ cartItemCount}}</span> Checkout
+            <span>{{ cartItemCount}}</span><span class="glyphicon glyphicon-shopping-cart"></span> Checkout
           </button>
         </form>
       </div>
@@ -35,7 +35,7 @@
           <p class="price">
             {{product.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled' class="default" v-on:click="addToCart click1">Add to cart</button><br>
+          <button :disabled='isDisabled' class="default" v-on:click="addToCart">Add to cart</button><br>
           <p>available in inventory: {{5 - this.cartItemCount}} pcs   </p>
           
         </div>
@@ -53,7 +53,7 @@
           <p class="pricenip">
             {{product2.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled' class="default" v-on:click="addToCart click2">Add to cart</button><br>
+          <button :disabled='isDisabled' class="default" v-on:click="addToCart">Add to cart</button><br>
           <p>available in inventory: {{10 - this.cartItemCount}} pcs   </p>
           
         </div>
@@ -71,7 +71,7 @@
           <p class="pricetoy">
             {{product3.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled' class="default" v-on:click="addToCart counter3+=1">Add to cart</button><br>
+          <button :disabled='isDisabled' class="default" v-on:click="addToCart">Add to cart</button><br>
           <p>available in inventory: {{17 - this.cartItemCount}} pcs   </p>
           
         </div>
@@ -89,7 +89,7 @@
   var webstore = new Vue({
     el: '#app',
     data: {
-      counter3: 0,
+      buttons: 0,
       terms: true,
       terms2: true,
       terms3: true,
@@ -128,13 +128,30 @@
     methods: {
       addToCart: function() {
         this.cart.push( this.product.id );
-        this.cart.push( this.product2.id );
-        this.cart.push( this.product3.id );
+        
       },
       showCheckout() {
         this.showProduct = this.showProduct ? false: true;
       },
+    /*  Button1: function() {
+        var Prod1 = JSON.parse(window.localStorage.getItem('prod1'));
+        // tallennetaan storageen
+        const buttons = Prod1 + 1;
+        localStorage.setItem('prod1', JSON.stringify(buttons));
+        return this.buttons;
+      },
+      Button2: function() {
+        // tallennetaan storageen
+        const buttons = this.button1;
+        localStorage.setItem('prod2', JSON.stringify(buttons)); 
+      },
+      Button3: function() {
+        // tallennetaan storageen
+        const buttons = this.button1;
+        localStorage.setItem('prod3', JSON.stringify(buttons));
+      } */
     },
+    
     computed: {
       cartItemCount() {
         return this.cart.length || '';
@@ -154,8 +171,9 @@
         if(this.cartItemCount >=  this.product3.availableInventory3) {
           return this.terms3;
         }
-      }, 
+      },
     },
+    
     filters: {
       formatPrice(price) {	
         if (!parseInt(price)) { return ""; }	
