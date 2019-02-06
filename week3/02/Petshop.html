@@ -21,7 +21,6 @@
   <main>
     <div class="row product">
       <div v-if="terms">
-
         <div class="col-md-2 col-md-offset-1">
           <figure>
             <img v-bind:src="product.image">
@@ -33,122 +32,184 @@
           <p class="price">
             {{product.price | formatPrice}}
           </p>
-      <button :disabled='isDisabled' class="default" v-on:click="addToCart">Add to cart</button><br>
-      <p>available in inventory: {{5 - this.cartItemCount}} pcs   </p>
-            
+          <button :disabled='isDisabled' class="default" v-on:click="addToCart">Add to cart</button><br>
+          <p>available in inventory: {{5 - this.cartItemCount}} pcs   </p>
+          
+        </div>
+      </div>
+      <br>
+      <div v-if="terms2">
+        <div class="col-md-2 col-md-offset-1">
+          <figure>
+            <img v-bind:src="product2.image">
+          </figure>
+        </div>
+        <div class="col-md-6 col-md-offset-2 description">
+          <h1 v-text="product2.title"></h1>
+          <p v-html="product2.description"></p>
+          <p class="pricenip">
+            {{product.pricenip | formatPrice}}
+          </p>
+          <button :disabled='isDisabled' class="default" v-on:click="addToCart">Add to cart</button><br>
+          <p>available in inventory: {{10 - this.cartItemCount}} pcs   </p>
+          
+        </div>
+      </div>
+      <br>
+      <div v-if="terms3">
+        <div class="col-md-2 col-md-offset-1">
+          <figure>
+            <img v-bind:src="product3.image">
+          </figure>
+        </div>
+        <div class="col-md-6 col-md-offset-2 description">
+          <h1 v-text="product3.title"></h1>
+          <p v-html="product3.description"></p>
+          <p class="pricetoy">
+            {{product.pricetoy | formatPrice}}
+          </p>
+          <button :disabled='isDisabled' class="default" v-on:click="addToCart">Add to cart</button><br>
+          <p>available in inventory: {{17 - this.cartItemCount}} pcs   </p>
+          
         </div>
       </div>
       <div v-else>
-
+        
       </div>
     </div><!--end of row-->
-
+    
   </main><!--end of main-->
-
+  
 </div>
-    <script type="text/javascript">
-    var APP_LOG_LIFECYCLE_EVENTS = true;
-    var webstore = new Vue({
-      el: '#app',
-      data: {
-        terms: true,
-        sitename: "Vue.js Pet Depot",
-        showProduct: true,
-		order: {
-			firstName: '',
-			lastName: ''
-		},
-        product: {
-          id: 1001,
-          title: "Cat Food, 25lb bag",
-          description: "A 25 pound bag of <em>irresistible</em>, organic goodness for your cat.",
-          price: 2000,
-          image: "assets/images/product-fullsize.png",
-          availableInventory: 5
-        },
-        cart: []
+<script type="text/javascript">
+  var APP_LOG_LIFECYCLE_EVENTS = true;
+  var webstore = new Vue({
+    el: '#app',
+    data: {
+      terms: true,
+      terms2: true,
+      terms3: true,
+      sitename: "Vue.js Pet Depot",
+      showProduct: true,
+      order: {
+        firstName: '',
+        lastName: ''
       },
-      methods: {
-        addToCart: function() {
-          this.cart.push( this.product.id );
-        },
-        showCheckout() {
-            this.showProduct = this.showProduct ? false: true;
-        },
+      product: {
+        id: 1001,
+        title: "Cat Food, 25lb bag",
+        description: "A 25 pound bag of <em>irresistible</em>, organic goodness for your cat.",
+        price: 2000,
+        image: "assets/images/product-fullsize.png",
+        availableInventory: 5
+      },          
+      product2: {
+        id: 1002,
+        title: "Catnip, 10lb bag",
+        description: "A 10 pound bag of greates catnip from warmest part's of teh country, just for your ow little kittens.",
+        pricenip: 1500,
+        image: "assets/images/catnip.png",
+        availableInventory2: 10
       },
-      computed: {
-          cartItemCount() {
-            return this.cart.length || '';
-          },
-          canAddToCart() {
-            return this.product.availableInventory > this.cartItemCount;
-          },
-          isDisabled() {
-            if(this.cartItemCount >=  5) {
-            return this.terms;
-            }
-          }, 
+      product3: {
+        id: 1003,
+        title: "Cat Food, 25lb bag",
+        description: "Lovely micetoy for your cat, made from ropes and feathers.",
+        pricetoy: 2500,
+        image: "assets/images/toy.png",
+        availableInventory3: 17
       },
-      filters: {
-        formatPrice(price) {	
-          if (!parseInt(price)) { return ""; }	
-          if (price > 99999) {	
-            var priceString = (price / 100).toFixed(2);	
-            var priceArray = priceString.split("").reverse();	
-            var index = 3;	
-            while (priceArray.length > index + 3) {	
-              priceArray.splice(index+3, 0, ",");	
-              index += 4;	
-            }	
-            return "$" + priceArray.reverse().join("");	
-          } else {
-            return "$" + (price / 100).toFixed(2);	
-          }
+      cart: []
+    },
+    methods: {
+      addToCart: function() {
+        this.cart.push( this.product.id );
+      },
+      showCheckout() {
+        this.showProduct = this.showProduct ? false: true;
+      },
+    },
+    computed: {
+      cartItemCount() {
+        return this.cart.length || '';
+      },
+      canAddToCart() {
+        return this.product.availableInventory > this.cartItemCount;
+        return this.product2.availableInventory2 > this.cartItemCount;
+        return this.product3.availableInventory3 > this.cartItemCount;
+      },
+      isDisabled() {
+        if(this.cartItemCount >=  this.product.availableInventory) {
+          return this.terms;
         }
-
-      },
-      beforeCreate: function() {	
-    if (APP_LOG_LIFECYCLE_EVENTS) {	
-      console.log("beforeCreate");	
-    }	
-  },	
-  created: function() {	
-    if (APP_LOG_LIFECYCLE_EVENTS) {	
-      console.log("created");	
-    }	
-  },	
-  beforeMount: function() {	
-    if (APP_LOG_LIFECYCLE_EVENTS) {	
-      console.log(" beforeMount");	
-    }	
-  },	
-  mounted:  function() {	
-    if (APP_LOG_LIFECYCLE_EVENTS) {	
-      console.log(" mounted"); 	
-    } 	
-  },	
-  beforeUpdate:  function() { 	
-    if (APP_LOG_LIFECYCLE_EVENTS) { 	
-      console.log("beforeUpdate"); 	
-    } 	
-  },	
-  updated:  function() { 	
-    if (APP_LOG_LIFECYCLE_EVENTS) { 	
-      console.log("updated"); 	
-    } 	
-  },	
-  beforeDestroyed:  function() { 	
-    if (APP_LOG_LIFECYCLE_EVENTS) { 	
-      console.log("beforeDestroyed "); 	
-    } 	
-  },	
-  destroyed:  function() { 	
-    if (APP_LOG_LIFECYCLE_EVENTS) { 
-      console.log("destroyed");
-    } 	//#I
-  }	//#I
-});
-
-    </script>
-  </body>
+        if(this.cartItemCount >=  this.product2.availableInventory2) {
+          return this.terms2;
+        }
+        if(this.cartItemCount >=  this.product3.availableInventory3) {
+          return this.terms3;
+        }
+      }, 
+    },
+    filters: {
+      formatPrice(price) {	
+        if (!parseInt(price)) { return ""; }	
+        if (price > 99999) {	
+          var priceString = (price / 100).toFixed(2);	
+          var priceArray = priceString.split("").reverse();	
+          var index = 3;	
+          while (priceArray.length > index + 3) {	
+            priceArray.splice(index+3, 0, ",");	
+            index += 4;	
+          }	
+          return "$" + priceArray.reverse().join("");	
+        } else {
+          return "$" + (price / 100).toFixed(2);	
+        }
+      }
+      
+    },
+    beforeCreate: function() {	
+      if (APP_LOG_LIFECYCLE_EVENTS) {	
+        console.log("beforeCreate");	
+      }	
+    },	
+    created: function() {	
+      if (APP_LOG_LIFECYCLE_EVENTS) {	
+        console.log("created");	
+      }	
+    },	
+    beforeMount: function() {	
+      if (APP_LOG_LIFECYCLE_EVENTS) {	
+        console.log(" beforeMount");	
+      }	
+    },	
+    mounted:  function() {	
+      if (APP_LOG_LIFECYCLE_EVENTS) {	
+        console.log(" mounted"); 	
+      } 	
+    },	
+    beforeUpdate:  function() { 	
+      if (APP_LOG_LIFECYCLE_EVENTS) { 	
+        console.log("beforeUpdate"); 	
+      } 	
+    },	
+    updated:  function() { 	
+      if (APP_LOG_LIFECYCLE_EVENTS) { 	
+        console.log("updated"); 	
+      } 	
+    },	
+    beforeDestroyed:  function() { 	
+      if (APP_LOG_LIFECYCLE_EVENTS) { 	
+        console.log("beforeDestroyed "); 	
+      } 	
+    },	
+    destroyed:  function() { 	
+      if (APP_LOG_LIFECYCLE_EVENTS) { 
+        console.log("destroyed");
+      } 	//#I
+    }	//#I
+  });
+  
+</script>
+</body>
 </html>
