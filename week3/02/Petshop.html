@@ -33,7 +33,8 @@
           <p class="price">
             {{product.price | formatPrice}}
           </p>
-			<button :disabled='isDisabled' class="default" v-on:click="addToCart">Add to cart</button>
+      <button :disabled='isDisabled' class="default" v-on:click="addToCart">Add to cart</button><br>
+      <p>available in inventory: {{5 - this.cartItemCount}} pcs   </p>
             
         </div>
       </div>
