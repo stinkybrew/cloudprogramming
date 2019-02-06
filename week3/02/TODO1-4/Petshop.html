@@ -35,7 +35,7 @@
           <p class="price">
             {{product.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled' class="default" v-on:click="addToCart">Add to cart</button><br>
+          <button :disabled='isDisabled' class="default" v-on:click="addToCart click1">Add to cart</button><br>
           <p>available in inventory: {{5 - this.cartItemCount}} pcs   </p>
           
         </div>
@@ -53,7 +53,7 @@
           <p class="pricenip">
             {{product2.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled' class="default" v-on:click="addToCart">Add to cart</button><br>
+          <button :disabled='isDisabled' class="default" v-on:click="addToCart click2">Add to cart</button><br>
           <p>available in inventory: {{10 - this.cartItemCount}} pcs   </p>
           
         </div>
@@ -71,7 +71,7 @@
           <p class="pricetoy">
             {{product3.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled' class="default" v-on:click="addToCart">Add to cart</button><br>
+          <button :disabled='isDisabled' class="default" v-on:click="addToCart counter3+=1">Add to cart</button><br>
           <p>available in inventory: {{17 - this.cartItemCount}} pcs   </p>
           
         </div>
@@ -89,6 +89,7 @@
   var webstore = new Vue({
     el: '#app',
     data: {
+      counter3: 0,
       terms: true,
       terms2: true,
       terms3: true,
@@ -127,6 +128,8 @@
     methods: {
       addToCart: function() {
         this.cart.push( this.product.id );
+        this.cart.push( this.product2.id );
+        this.cart.push( this.product3.id );
       },
       showCheckout() {
         this.showProduct = this.showProduct ? false: true;

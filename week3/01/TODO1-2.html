@@ -38,7 +38,14 @@
         }
         var calc = new Vue({
             el: '#app',
-            data: { x: 0, y: 0, lastResult: 0, lastmultiply: 0, lastdivide: 0, lastmult: "", lastdiv: "" },
+            data: { 
+                x: 0, 
+                y: 0, 
+                lastResult: 0, 
+                lastmultiply: 0, 
+                lastdivide: 0, 
+                lastmult: "", 
+                lastdiv: "" },
             computed: {
                 result: function () {
                     let x = parseFloat(this.x);
