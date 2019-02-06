@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>w3 02 TODO1-4</title>
+  <title>w3 02 TODO1-2</title>
   <script src="https://unpkg.com/vue"></script>
   <link rel="stylesheet" type="text/css" href="assets/css/app.css"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -71,7 +71,7 @@
           <p class="pricetoy">
             {{product3.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled' class="default" v-on:click="addToCart3">Add to cart</button><br>
+          <button :disabled='isDisabled' class="default" v-on:click="addToCart3" @click="countarray">Add to cart</button><br>
           <p>available in inventory: {{17 - this.cartItemCount}} pcs   </p>
           
         </div>
@@ -92,7 +92,7 @@
       terms: true,
       terms2: true,
       terms3: true,
-      sitename: "W3 02 TODO1-4",
+      sitename: "W3 02 TODO1-2",
       showProduct: true,
       order: {
         firstName: '',
@@ -137,15 +137,19 @@
       showCheckout() {
         this.showProduct = this.showProduct ? false: true;
       },
-
-    /*  Button1: function() {
+      countarray: function(count) {
+        var  count = {};
+        this.cart.forEach(function(i) { count[i] = (count[i]||0) + 1;});
+        console.log(count);
+      }
+      /*  Button1: function() {
         var Prod1 = JSON.parse(window.localStorage.getItem('prod1'));
         // tallennetaan storageen
         const buttons = Prod1 + 1;
         localStorage.setItem('prod1', JSON.stringify(buttons));
         return this.buttons;
       }, */
-
+      
     },
     
     computed: {

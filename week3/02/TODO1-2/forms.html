@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>w3 02 TODO1-4</title>
+  <title>w3 02 TODO1-2</title>
   <script src="https://unpkg.com/vue"></script>
   <link rel="stylesheet" type="text/css" href="assets/css/app.css"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -36,25 +36,25 @@
                 <div class="form-group">
                   <div class="col-md-6">
                     <strong>First Name:</strong>                            <!-- FIRST NAME -->
-                    <input class="form-control" />
+                    <input v-mode="order.firstName" class="form-control" />
 					<!--  bind 
 					<input v-model="?" class="form-control" />
 					-->
                   </div>
                   <div class="col-md-6">
                     <strong>Last Name:</strong>                             <!-- LAST NAME -->
-                    <input  class="form-control" />
+                    <input v-mode="order.lastName"  class="form-control" />
                     <!--  bind -->
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-md-12"><strong>Address:</strong></div>    <!-- ADDRESS -->
-                  <input class="form-control" />
+                  <input v-mode="order.address" class="form-control" />
                   <!--  bind -->
                 </div>
                 <div class="form-group">
                   <div class="col-md-12"><strong>City:</strong></div>       <!-- CITY -->
-                  <input class="form-control" />
+                  <input v-mode="order.city" class="form-control" />
                   <!--  bind -->
                 </div>
                 <div class="form-group">
@@ -66,23 +66,23 @@
                 <div class="form-group">
                   <div class="col-md-6 col-md-offset-4">
                     <strong>Zip / Postal Code:</strong>                     <!-- POSTAL CODE -->
-                    <input class="form-control" />
+                    <input v-mode="order.zip" class="form-control" />
                     <!--  bind -->
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-md-6 boxes">
-                    <input type="checkbox">
+                    <input  v-mode="order.gift" type="checkbox">
                       <!--  bind -->
                     <label for="checkbox">Ship As Gift?</label>             <!-- SHIP AS GIFT -->
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-md-6 boxes">
-                    <input type="radio">
+                    <input v-mode="order.home" type="radio">
                       <!--  bind -->
                     <label for="home">Home</label>                          <!-- HOME / BUSINESS -->
-                    <input type="radio">
+                    <input v-mode="order.business" type="radio">
                       <!--  bind -->
                     <label for="business">Business</label>
                   </div>
@@ -119,7 +119,7 @@
     var webstore = new Vue({
       el: '#app',
       data: {
-        sitename: "w3 02 TODO1-4",
+        sitename: "w3 02 TODO1-2",
         showProduct: true,
         a: false,
         states: {
