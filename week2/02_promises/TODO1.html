@@ -2,13 +2,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Promises test</title>
+  <title>w2 02 TODO1</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <h1>w2 02 TODO1</h1><br>
   <div class="network-fake">
     <label><input type="checkbox"> Fake network delay</label>
   </div>
+  <div>
+    <!-- <button onclick="myFunction()">Download next chapter</button> -->
+    <input type="button" value="Download next chapter?" onclick="functio()">
+</div>
   <div class="story"></div>
   <svg class="spinner" viewBox="0 0 100 100" width="20" height="20">
     <circle cx="50" cy="50" r="42" transform="rotate(-90,50,50)" />
@@ -20,6 +25,11 @@
     // Use Github Gist when no web server is available
     // getJson('https://gist.githubusercontent.com/c0lin/571d38b984d41b44aacf/raw/story.json').then(function(story) {
     getJson('data/story.json')
+    .then(function() {
+          // ...fetch the next chapter
+          document.write("Downloading next chapter...");
+          return getJson('data/'+chapterUrl);
+        })
     .then(function(story) {
       addHtmlToPage(story.heading);
 
