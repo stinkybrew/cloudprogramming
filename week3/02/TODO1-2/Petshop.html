@@ -16,6 +16,7 @@
           <button type="submit" class="btn btn-default btn-lg" v-on:click="showCheckout">
             <span>{{ cartItemCount}}</span><span class="glyphicon glyphicon-shopping-cart"></span> Checkout
           </button>
+          <p>test: {{ showProduct }} </p>
         </form>
       </div>
     </div>
@@ -23,7 +24,7 @@
   <main>
     <div v-if="showProduct == false">
       <!-- Cat food -->
-      <div v-show="showProduct == false">
+      <div>
         <div class="col-md-2 col-md-offset-1">
           <figure>
             <img v-bind:src="product.image">
@@ -40,11 +41,9 @@
           
         </div>
       </div>
-      <div v-else>
-        
-      </div>  
+ 
       <!-- Catnip -->
-      <div v-if="terms2">
+      <div>
         <div class="col-md-2 col-md-offset-1">
           <figure>
             <img v-bind:src="product2.image">
@@ -61,11 +60,9 @@
           
         </div>
       </div>
-      <div v-else>
-        
-      </div>
+
       <!-- Cat Toy -->
-      <div v-if="terms3">
+      <div>
         <div class="col-md-2 col-md-offset-1">
           <figure>
             <img v-bind:src="product3.image">
@@ -82,13 +79,99 @@
           
         </div>
       </div>
-      <div v-else>
-        
-      </div>
     </div><!--end of row-->
-  <div v-else>
-
-  </div>
+    <div v-else="">
+        <div class="row">
+            <div >
+              <p></p>
+            </div>
+            <div>
+              <div class="col-md-10 col-md-offset-1">
+                <div class="panel panel-info">
+                  <div class="panel-heading">Pet Depot Checkout</div>
+                  <div class="panel-body">
+                    <div class="form-group">
+                      <div class="col-md-12">
+                        <h4><strong>Enter Your Information</strong></h4>
+                      </div>
+                      <div class="form-group">
+                        <div class="col-md-6">
+                          <strong>First Name:</strong>                            <!-- FIRST NAME -->
+                          <input v-mode="order.firstName" class="form-control" />
+                <!--  bind 
+                <input v-model="?" class="form-control" />
+                -->
+                        </div>
+                        <div class="col-md-6">
+                          <strong>Last Name:</strong>                             <!-- LAST NAME -->
+                          <input v-mode="order.lastName"  class="form-control" />
+                          <!--  bind -->
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="col-md-12"><strong>Address:</strong></div>    <!-- ADDRESS -->
+                        <input v-mode="order.address" class="form-control" />
+                        <!--  bind -->
+                      </div>
+                      <div class="form-group">
+                        <div class="col-md-12"><strong>City:</strong></div>       <!-- CITY -->
+                        <input v-mode="order.city" class="form-control" />
+                        <!--  bind -->
+                      </div>
+                      <div class="form-group">
+                        <div class="col-md-2">
+                          <strong>State:</strong>                                 <!-- STATE -->
+                <!--  bind  using v-model and v-for for a list of states -->
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-md-offset-4">
+                          <strong>Zip / Postal Code:</strong>                     <!-- POSTAL CODE -->
+                          <input v-mode="order.zip" class="form-control" />
+                          <!--  bind -->
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="col-md-6 boxes">
+                          <input  v-mode="order.gift" type="checkbox">
+                            <!--  bind -->
+                          <label for="checkbox">Ship As Gift?</label>             <!-- SHIP AS GIFT -->
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="col-md-6 boxes">
+                          <input v-mode="order.home" type="radio">
+                            <!--  bind -->
+                          <label for="home">Home</label>                          <!-- HOME / BUSINESS -->
+                          <input v-mode="order.business" type="radio">
+                            <!--  bind -->
+                          <label for="business">Business</label>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="col-md-6">
+                          <button type="submit" class="btn btn-primary submit" v-on:click="submitForm">Place Order</button>
+                        </div>
+                      </div>
+                      <div class="col-md-12 verify">
+                        <pre>
+                          First Name: {{order.firstName}}
+                          Last Name: {{order.lastName}}
+                          Address: {{order.address}}
+                          City: {{order.city}}
+                          Zip: {{order.zip}}
+                          State: {{order.state}}
+                          Method: {{order.method}}
+                          Gift: {{order.gift}}
+                        </pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
     
 
 
@@ -107,8 +190,8 @@
       sitename: "W3 02 TODO1-2",
       showProduct: false,
       order: {
-        firstName: '',
-        lastName: ''
+        firstName: "",
+        lastName: ""
       },
       product: {      // CatFood
         id: 1001,
@@ -147,9 +230,10 @@
       addToCart3: function() {
         this.cart.push( this.product3.id ); 
       },
-      showCheckout() {
+      showCheckout(event) {
+        event.preventDefault()
+        //this.showProduct = this.showProduct ? false: true;
         this.showProduct = this.showProduct ? false: true;
-        return this.showProduct;
       },
       countarray: function(count) {
         var  count = {};
