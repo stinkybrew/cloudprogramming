@@ -35,8 +35,8 @@
           <p class="price">
             {{product.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled' class="default" v-on:click="prod1 -= 1"  @click="addToCart1">Add to cart</button><br>
-          <p>available in inventory: {{5 - this.newval}} pcs   </p>
+          <button :disabled='isDisabled' class="default" v-on:click="prod1 -= 1" >Add to cart</button><br>
+          <p>available in inventory: {{ prod1 }} pcs   </p>
           
         </div>
       </div>
@@ -53,8 +53,8 @@
           <p class="pricenip">
             {{product2.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled' class="default" v-on:click="prod2 -= 1"  @click="addToCart2">Add to cart</button><br>
-          <p>available in inventory: {{10 - this.newVal}} pcs   </p>
+          <button :disabled='isDisabled' class="default" v-on:click="prod2 -= 1" >Add to cart</button><br>
+          <p>available in inventory: {{ prod2 }} pcs   </p>
           
         </div>
       </div>
@@ -71,8 +71,8 @@
           <p class="pricetoy">
             {{product3.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled' class="default" v-on:click="prod3 -= 1" @click="addToCart3">Add to cart</button><br>
-          <p>available in inventory: {{17 - this.newVal}} pcs   </p>
+          <button :disabled='isDisabled' class="default" v-on:click="prod3 -= 1" >Add to cart</button><br>
+          <p>available in inventory: {{ prod3 }} pcs   </p>
           
         </div>
       </div>
@@ -104,7 +104,7 @@
         description: "A 25 pound bag of <em>irresistible</em>, organic goodness for your cat.",
         price: 2000,
         image: "assets/images/product-fullsize.png",
-        availableInventory: 5
+        prod1: 5
       },          
       product2: {     // Catnip
         id: 1002,
@@ -112,7 +112,7 @@
         description: "A 10 pound bag of greatest catnip from warmest part's of the country, just for your ow little kittens.",
         price: 1500,
         image: "assets/images/catnip.png",
-        availableInventory2: 10
+        prod2: 10
       },
       product3: {     // Toy
         id: 1003,
@@ -120,7 +120,7 @@
         description: "Lovely micetoy for your cat, made from ropes and feathers.",
         price: 500,
         image: "assets/images/toy.png",
-        availableInventory3: 17
+        prod3: 17
       },
       cart: []
     },
@@ -152,57 +152,54 @@
       
     },
     // cartin toiminto, ettei sinne voi laittaa enempää, kuin mitä invetoryssä on tarjolla
-    computed: {
-      area: function() {                     
-          return this.oldval - this.newVal;     
-      },         
+    computed: {      
       cartItemCount() {
         return this.cart.length || '';
       },
       canAddToCart() {
-        return this.product.availableInventory > this.cartItemCount;    // CatFood 
-        return this.product2.availableInventory2 > this.cartItemCount;  // Catnip
-        return this.product3.availableInventory3 > this.cartItemCount;  // Toy
+        return this.product.prod1 > this.cartItemCount;    // CatFood 
+        return this.product2.prod2 > this.cartItemCount;  // Catnip
+        return this.product3.prod3 > this.cartItemCount;  // Toy
       },
       isDisabled() {
-        if(this.cartItemCount >=  this.product.availableInventory) {
+        if(this.cartItemCount >=  this.product.prod1) {
           return this.terms;
         }
-        if(this.cartItemCount >=  this.product2.availableInventory2) {
+        if(this.cartItemCount >=  this.product2.prod2) {
           return this.terms2;
         }
-        if(this.cartItemCount >=  this.product3.availableInventory3) {
+        if(this.cartItemCount >=  this.product3.prod3) {
           return this.terms3;
         }
       },
     },
-    // inventory arvojen päivitys
 
+    // inventory arvojen päivitys
     watch: {
-        prod1: function(newVal, oldVal) {                
+      prod1: function(newVal1, oldVal1) {                
           console.log('The old value of length was: '     
-                      + oldVal +                          
+                      + oldVal1 +                          
                       '\nThe new value of length is: '    
-                      + newVal);                          
-        },
-        prod2: function(newVal, oldVal) {                 
-          console.log('The old value of width was: '      
-                      + oldVal +                          
-                      '\nThe new value of width is: '     
-                      + newVal);                          
-        },
-        prod3: function(newVal, oldVal) {                  
-          console.log('The old value of area was: '       
-                      + oldVal +                          
-                      '\nThe new value of area is: '      
-                      + newVal);                          
-        }
+                      + newVal1);                          
       },
+      prod2: function(newVal2, oldVal2) {                 
+        console.log('The old value of width was: '      
+                      + oldVal2 +                          
+                      '\nThe new value of width is: '     
+                      + newVal2);                          
+      },
+      prod3: function(newVal3, oldVal3) {                  
+        console.log('The old value of area was: '       
+                      + oldVal3 +                          
+                      '\nThe new value of area is: '      
+                      + newVal3);                          
+      }
+    },
     beforeUpdate: function() {                             
       console.log('All those data changes happened '       
                     + 'before the output gets updated.');    
-    }
-    });
+    },
+    
 
     // hintaasrvo
     filters: {
