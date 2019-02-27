@@ -35,7 +35,7 @@
           <p class="price">
             {{product.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled1' class="default" v-on:click="product.prod1 -= 1" >Add to cart</button><br>
+          <button :disabled='isDisabled1' class="default" v-on:click="product.prod1 -= 1; addToCart()" >Add to cart</button><br>
           <p>available in inventory: {{ product.prod1 }} pcs   </p>
           
         </div>
@@ -53,7 +53,7 @@
           <p class="pricenip">
             {{product2.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled2' class="default" v-on:click="product2.prod2 -= 1" >Add to cart</button><br>
+          <button :disabled='isDisabled2' class="default" v-on:click="product2.prod2 -= 1; addToCart2()" >Add to cart</button><br>
           <p>available in inventory: {{ product2.prod2 }} pcs   </p>
           
         </div>
@@ -71,7 +71,7 @@
           <p class="pricetoy">
             {{product3.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled3' class="default" v-on:click="product3.prod3 -= 1" >Add to cart</button><br>
+          <button :disabled='isDisabled3' class="default" v-on:click="product3.prod3 -= 1; addToCart3()" >Add to cart</button><br>
           <p>available in inventory: {{ product3.prod3 }} pcs   </p>
           
         </div>
@@ -105,7 +105,6 @@
         price: 2000,
         image: "assets/images/product-fullsize.png",
         prod1: 5,
-        inv1: 5
       },          
       product2: {     // Catnip
         id: 1002,
@@ -114,7 +113,6 @@
         price: 1500,
         image: "assets/images/catnip.png",
         prod2: 10,
-        inv2: 10
       },
       product3: {     // Toy
         id: 1003,
@@ -123,13 +121,13 @@
         price: 500,
         image: "assets/images/toy.png",
         prod3: 17,
-        inv3: 17
       },
       cart: []
     },
     methods: {
       addToCart: function() {
-        this.cart.push( this.product.id ); 
+        this.cart.push( this.product.id );
+        console.log("push to cast test product1"); 
       },
       addToCart2: function() {
         this.cart.push( this.product2.id ); 
@@ -161,24 +159,26 @@
         return this.cart.length || '';
       },
       canAddToCart() {
-        return this.product.prod1 > 0;    // CatFood 
-        return this.product2.prod2 > 0;  // Catnip
-        return this.product3.prod3 > 0  // Toy
+        if(this.product.prod1 > 0) {
+          return this.product.prod1 > 0;    // CatFood 
+          return this.product2.prod2 > 0;  // Catnip
+          return this.product3.prod3 > 0  // Toy
+        }  
       },
       isDisabled1() {
         if(this.product.prod1 ==  0) {
           return this.terms;
-        }
+        }  
       },  
       isDisabled2() {  
         if(this.product2.prod2 ==  0) {
           return this.terms2;
-        }
+        }  
       },
       isDisabled3() {  
         if(this.product3.prod3 ==  0) {
           return this.terms3;
-        }
+        }  
       },
     },
 
