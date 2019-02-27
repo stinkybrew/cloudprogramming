@@ -10,33 +10,35 @@
       Area is equal to: {{ area }}     
     </p>
     <p>
-      <button v-on:click="length += 1">Add length</button>     
-      <button v-on:click="width += 1">Add width</button>      
+      <button v-on:click="prod1 -= 1">prod1</button>     
+      <button v-on:click="prod2 -= 1">prod2</button>      
+      <button v-on:click="prod3 -= 1">prod3</button>
     </p>
   </div>
   <script type="text/javascript">
     var app = new Vue({
       el: '#app',
-      data: { length: 5, width: 3 },
+      data: { prod1: 5, prod2: 3, prod3: 6 },
       computed: {
-        area: function() {                     
-          return this.width * this.length;     
+        area: function() { 
+          console.log(this.prod1);                    
+          return this.prod1;     
         }                                      
       },
       watch: {
-        length: function(newVal, oldVal) {                
+        prod1: function(newVal, oldVal) {                
           console.log('The old value of length was: '     
                       + oldVal +                          
                       '\nThe new value of length is: '    
                       + newVal);                          
         },
-        width: function(newVal, oldVal) {                 
+        prod2: function(newVal, oldVal) {                 
           console.log('The old value of width was: '      
                       + oldVal +                          
                       '\nThe new value of width is: '     
                       + newVal);                          
         },
-        area: function(newVal, oldVal) {                  
+        prod3: function(newVal, oldVal) {                  
           console.log('The old value of area was: '       
                       + oldVal +                          
                       '\nThe new value of area is: '      

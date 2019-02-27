@@ -35,8 +35,8 @@
           <p class="price">
             {{product.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled' class="default" v-on:click="addToCart">Add to cart</button><br>
-          <p>available in inventory: {{5 - this.cartItemCount}} pcs   </p>
+          <button :disabled='isDisabled' class="default" v-on:click="prod1 -= 1"  @click="addToCart1">Add to cart</button><br>
+          <p>available in inventory: {{5 - this.newval}} pcs   </p>
           
         </div>
       </div>
@@ -53,8 +53,8 @@
           <p class="pricenip">
             {{product2.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled' class="default" v-on:click="addToCart2">Add to cart</button><br>
-          <p>available in inventory: {{10 - this.cartItemCount}} pcs   </p>
+          <button :disabled='isDisabled' class="default" v-on:click="prod2 -= 1"  @click="addToCart2">Add to cart</button><br>
+          <p>available in inventory: {{10 - this.newVal}} pcs   </p>
           
         </div>
       </div>
@@ -71,8 +71,8 @@
           <p class="pricetoy">
             {{product3.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled' class="default" v-on:click="addToCart3" @click="countarray">Add to cart</button><br>
-          <p>available in inventory: {{17 - this.cartItemCount}} pcs   </p>
+          <button :disabled='isDisabled' class="default" v-on:click="prod3 -= 1" @click="addToCart3">Add to cart</button><br>
+          <p>available in inventory: {{17 - this.newVal}} pcs   </p>
           
         </div>
       </div>
@@ -151,8 +151,11 @@
       }, */
       
     },
-    
+    // cartin toiminto, ettei sinne voi laittaa enempää, kuin mitä invetoryssä on tarjolla
     computed: {
+      area: function() {                     
+          return this.oldval - this.newVal;     
+      },         
       cartItemCount() {
         return this.cart.length || '';
       },
@@ -173,7 +176,35 @@
         }
       },
     },
-    
+    // inventory arvojen päivitys
+
+    watch: {
+        prod1: function(newVal, oldVal) {                
+          console.log('The old value of length was: '     
+                      + oldVal +                          
+                      '\nThe new value of length is: '    
+                      + newVal);                          
+        },
+        prod2: function(newVal, oldVal) {                 
+          console.log('The old value of width was: '      
+                      + oldVal +                          
+                      '\nThe new value of width is: '     
+                      + newVal);                          
+        },
+        prod3: function(newVal, oldVal) {                  
+          console.log('The old value of area was: '       
+                      + oldVal +                          
+                      '\nThe new value of area is: '      
+                      + newVal);                          
+        }
+      },
+      beforeUpdate: function() {                             
+        console.log('All those data changes happened '       
+                    + 'before the output gets updated.');    
+      }
+    });
+
+    // hintaasrvo
     filters: {
       formatPrice(price) {	
         if (!parseInt(price)) { return ""; }	
