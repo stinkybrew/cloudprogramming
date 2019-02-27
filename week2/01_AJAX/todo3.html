@@ -5,7 +5,7 @@
         <title> Assignment w2 AJAX_TODO3</title>
         <script>
             window.onload = function() {
-                var Foodstring = '{"icecream": { "flavour1": "strawberry", "flavour2": "apple", "flavour3": "vanilja",} "price": {"flavour1": "3,99e", "flavour2": "4,55e", "flavour3": "3,10e",}}';
+                //var Foodstring = '{"icecream": { "flavour1": "strawberry", "flavour2": "apple", "flavour3": "vanilja",} "price": {"flavour1": "3,99e", "flavour2": "4,55e", "flavour3": "3,10e",}}';
 
                 var food = {
                     icecream: {
@@ -21,9 +21,9 @@
                 };
                 //to js string
                 var FoodString = JSON.stringify(food);
-                console.log("Here's some food as string! " + Foodstring);
+                console.log("Here's some food as string! " + FoodString);
 
-                document.getElementById("food").innerHTML = Foodstring + "<br>";
+                document.getElementById("food").innerHTML = FoodString + "<br>";
 
                 //back to a json
                 var foodObjects = JSON.parse(FoodString);
