@@ -35,8 +35,8 @@
           <p class="price">
             {{product.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled' class="default" v-on:click="prod1 -= 1" >Add to cart</button><br>
-          <p>available in inventory: {{ prod1 }} pcs   </p>
+          <button :disabled='isDisabled1' class="default" v-on:click="product.prod1 -= 1" >Add to cart</button><br>
+          <p>available in inventory: {{ product.prod1 }} pcs   </p>
           
         </div>
       </div>
@@ -53,8 +53,8 @@
           <p class="pricenip">
             {{product2.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled' class="default" v-on:click="prod2 -= 1" >Add to cart</button><br>
-          <p>available in inventory: {{ prod2 }} pcs   </p>
+          <button :disabled='isDisabled2' class="default" v-on:click="product2.prod2 -= 1" >Add to cart</button><br>
+          <p>available in inventory: {{ product2.prod2 }} pcs   </p>
           
         </div>
       </div>
@@ -71,8 +71,8 @@
           <p class="pricetoy">
             {{product3.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled' class="default" v-on:click="prod3 -= 1" >Add to cart</button><br>
-          <p>available in inventory: {{ prod3 }} pcs   </p>
+          <button :disabled='isDisabled3' class="default" v-on:click="product3.prod3 -= 1" >Add to cart</button><br>
+          <p>available in inventory: {{ product3.prod3 }} pcs   </p>
           
         </div>
       </div>
@@ -104,7 +104,8 @@
         description: "A 25 pound bag of <em>irresistible</em>, organic goodness for your cat.",
         price: 2000,
         image: "assets/images/product-fullsize.png",
-        prod1: 5
+        prod1: 5,
+        inv1: 5
       },          
       product2: {     // Catnip
         id: 1002,
@@ -112,7 +113,8 @@
         description: "A 10 pound bag of greatest catnip from warmest part's of the country, just for your ow little kittens.",
         price: 1500,
         image: "assets/images/catnip.png",
-        prod2: 10
+        prod2: 10,
+        inv2: 10
       },
       product3: {     // Toy
         id: 1003,
@@ -120,7 +122,8 @@
         description: "Lovely micetoy for your cat, made from ropes and feathers.",
         price: 500,
         image: "assets/images/toy.png",
-        prod3: 17
+        prod3: 17,
+        inv3: 17
       },
       cart: []
     },
@@ -142,6 +145,7 @@
         this.cart.forEach(function(i) { count[i] = (count[i]||0) + 1;});
         console.log(count);
       }
+      
       /*  Button1: function() {
         var Prod1 = JSON.parse(window.localStorage.getItem('prod1'));
         // tallennetaan storageen
@@ -157,18 +161,22 @@
         return this.cart.length || '';
       },
       canAddToCart() {
-        return this.product.prod1 > this.cartItemCount;    // CatFood 
-        return this.product2.prod2 > this.cartItemCount;  // Catnip
-        return this.product3.prod3 > this.cartItemCount;  // Toy
+        return this.product.prod1 > 0;    // CatFood 
+        return this.product2.prod2 > 0;  // Catnip
+        return this.product3.prod3 > 0  // Toy
       },
-      isDisabled() {
-        if(this.cartItemCount >=  this.product.prod1) {
+      isDisabled1() {
+        if(this.product.prod1 ==  0) {
           return this.terms;
         }
-        if(this.cartItemCount >=  this.product2.prod2) {
+      },  
+      isDisabled2() {  
+        if(this.product2.prod2 ==  0) {
           return this.terms2;
         }
-        if(this.cartItemCount >=  this.product3.prod3) {
+      },
+      isDisabled3() {  
+        if(this.product3.prod3 ==  0) {
           return this.terms3;
         }
       },
@@ -176,23 +184,24 @@
 
     // inventory arvojen päivitys
     watch: {
-      prod1: function(newVal1, oldVal1) {                
+      prod1: function(newVal, oldVal) {                
           console.log('The old value of length was: '     
-                      + oldVal1 +                          
+                      + oldVal +                          
                       '\nThe new value of length is: '    
-                      + newVal1);                          
+                      + newVal);                          
       },
-      prod2: function(newVal2, oldVal2) {                 
+      prod2: function(newVal, oldVal) {                 
         console.log('The old value of width was: '      
-                      + oldVal2 +                          
+                      + oldVal +                          
                       '\nThe new value of width is: '     
-                      + newVal2);                          
+                      + newVal);
+                      console.log(prod2);                          
       },
-      prod3: function(newVal3, oldVal3) {                  
+      prod3: function(newVal, oldVal) {                  
         console.log('The old value of area was: '       
-                      + oldVal3 +                          
+                      + oldVal +                          
                       '\nThe new value of area is: '      
-                      + newVal3);                          
+                      + newVal);                          
       }
     },
     beforeUpdate: function() {                             
