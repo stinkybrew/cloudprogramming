@@ -24,7 +24,7 @@
   <main>
     <div v-if="showProduct == false">
       <!-- Cat food -->
-      <div>
+      <div v-if="terms">
         <div class="col-md-2 col-md-offset-1">
           <figure>
             <img v-bind:src="product.image">
@@ -36,14 +36,14 @@
           <p class="price">
             {{product.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled1' class="default" v-on:click="product.prod1 -= 1; addToCart()" >Add to cart</button><br>
+          <button :disabled='isDisabled1' id="tbn1" class="default" v-on:click="product.prod1 -= 1; addToCart(); isDisabled1" >Add to cart</button><br>
           <p>available in inventory: {{ product.prod1 }} pcs   </p>
           
         </div>
       </div>
  
       <!-- Catnip -->
-      <div>
+      <div v-if="terms2">
         <div class="col-md-2 col-md-offset-1">
           <figure>
             <img v-bind:src="product2.image">
@@ -55,14 +55,14 @@
           <p class="pricenip">
             {{product2.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled2' class="default" v-on:click="product2.prod2 -= 1; addToCart2()" >Add to cart</button><br>
+          <button :disabled='isDisabled2' id="tbn2" class="default" v-on:click="product2.prod2 -= 1; addToCart2()" >Add to cart</button><br>
           <p>available in inventory: {{ product2.prod2 }} pcs   </p>
           
         </div>
       </div>
 
       <!-- Cat Toy -->
-      <div>
+      <div v-if="terms3">
         <div class="col-md-2 col-md-offset-1">
           <figure>
             <img v-bind:src="product3.image">
@@ -74,7 +74,7 @@
           <p class="pricetoy">
             {{product3.price | formatPrice}}
           </p>
-          <button :disabled='isDisabled3' class="default" v-on:click="product3.prod3 -= 1; addToCart3()" >Add to cart</button><br>
+          <button :disabled='isDisabled3' id="btn3" class="default" v-on:click="product3.prod3 -= 1; addToCart3()" >Add to cart</button><br>
           <p>available in inventory: {{ product3.prod3 }} pcs   </p>
           
         </div>
@@ -172,10 +172,6 @@
             </div>
           </div>
     </div>
-    
-
-
-    
   </main><!--end of main-->
   
 </div>
@@ -189,9 +185,27 @@
       terms3: true,
       sitename: "W3 02 TODO1-2",
       showProduct: false,
+      a: false,
+      states: {
+        AL: 'Alabama',
+        AK: 'Alaska',
+        AR: 'Arizona',
+        CA: 'California',
+        NV: 'Nevada'
+      },
       order: {
-        firstName: "",
-        lastName: ""
+        firstName: '',
+        lastName: '',
+        address: '',
+        city: '',
+        zip: '',
+        state: '',
+        method: 'Home Address',
+        business: 'Business Address',
+        home: 'Home Address',
+        gift:'Send As A Gift',
+        sendGift: 'Send As A Gift',
+        dontSendGift: 'Do Not Send As A Gift'
       },
       product: {      // CatFood
         id: 1001,
