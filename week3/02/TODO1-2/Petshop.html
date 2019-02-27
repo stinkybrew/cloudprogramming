@@ -12,7 +12,7 @@
         <h1>{{ sitename }}</h1>
       </div>
       <div class="nav navbar-nav navbar-right cart">
-        <form action="forms.html">
+        <form>
           <button type="submit" class="btn btn-default btn-lg" v-on:click="showCheckout">
             <span>{{ cartItemCount}}</span><span class="glyphicon glyphicon-shopping-cart"></span> Checkout
           </button>
@@ -21,9 +21,9 @@
     </div>
   </header>
   <main>
-    <div class="row product">
+    <div v-if="showProduct == false">
       <!-- Cat food -->
-      <div v-if="terms">
+      <div v-show="showProduct == false">
         <div class="col-md-2 col-md-offset-1">
           <figure>
             <img v-bind:src="product.image">
@@ -40,6 +40,9 @@
           
         </div>
       </div>
+      <div v-else>
+        
+      </div>  
       <!-- Catnip -->
       <div v-if="terms2">
         <div class="col-md-2 col-md-offset-1">
@@ -57,6 +60,9 @@
           <p>available in inventory: {{ product2.prod2 }} pcs   </p>
           
         </div>
+      </div>
+      <div v-else>
+        
       </div>
       <!-- Cat Toy -->
       <div v-if="terms3">
@@ -80,6 +86,12 @@
         
       </div>
     </div><!--end of row-->
+  <div v-else>
+
+  </div>
+    
+
+
     
   </main><!--end of main-->
   
@@ -93,7 +105,7 @@
       terms2: true,
       terms3: true,
       sitename: "W3 02 TODO1-2",
-      showProduct: true,
+      showProduct: false,
       order: {
         firstName: '',
         lastName: ''
@@ -117,7 +129,7 @@
       product3: {     // Toy
         id: 1003,
         title: "rope-mouse toy",
-        description: "Lovely micetoy for your cat, made from ropes and feathers.",
+        description: "Lovely mousetoy for your cat, made from ropes and feathers.",
         price: 500,
         image: "assets/images/toy.png",
         prod3: 17,
@@ -137,6 +149,7 @@
       },
       showCheckout() {
         this.showProduct = this.showProduct ? false: true;
+        return this.showProduct;
       },
       countarray: function(count) {
         var  count = {};
