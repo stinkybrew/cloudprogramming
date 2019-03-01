@@ -97,53 +97,54 @@
                       <div class="form-group">
                         <div class="col-md-6">
                           <strong>First Name:</strong>                            <!-- FIRST NAME -->
-                          <input v-mode="order.firstName" class="form-control" />
+                          <input v-model="order.firstName" class="form-control" />
                 <!--  bind 
                 <input v-model="?" class="form-control" />
                 -->
                         </div>
                         <div class="col-md-6">
                           <strong>Last Name:</strong>                             <!-- LAST NAME -->
-                          <input v-mode="order.lastName"  class="form-control" />
+                          <input v-model="order.lastName"  class="form-control" />
                           <!--  bind -->
                         </div>
                       </div>
                       <div class="form-group">
                         <div class="col-md-12"><strong>Address:</strong></div>    <!-- ADDRESS -->
-                        <input v-mode="order.address" class="form-control" />
+                        <input v-model="order.address" class="form-control" />
                         <!--  bind -->
                       </div>
                       <div class="form-group">
                         <div class="col-md-12"><strong>City:</strong></div>       <!-- CITY -->
-                        <input v-mode="order.city" class="form-control" />
+                        <input v-model="order.city" class="form-control" />
                         <!--  bind -->
                       </div>
                       <div class="form-group">
                         <div class="col-md-2">
-                          <strong>State:</strong>                                 <!-- STATE -->
+                          <strong>State:</strong>
+                          <input v-for="states" v-model="states" class="form-control" >                  <!-- STATE -->
                 <!--  bind  using v-model and v-for for a list of states -->
                         </div>
                       </div>
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
                           <strong>Zip / Postal Code:</strong>                     <!-- POSTAL CODE -->
-                          <input v-mode="order.zip" class="form-control" />
+                          <input v-model="order.zip" class="form-control" />
                           <!--  bind -->
                         </div>
                       </div>
                       <div class="form-group">
                         <div class="col-md-6 boxes">
-                          <input  v-mode="order.gift" type="checkbox">
+                          <input  v-model="order.gift" type="checkbox">
                             <!--  bind -->
                           <label for="checkbox">Ship As Gift?</label>             <!-- SHIP AS GIFT -->
                         </div>
                       </div>
                       <div class="form-group">
                         <div class="col-md-6 boxes">
-                          <input v-mode="order.home" type="radio">
+                          <input v-model="order.home" type="radio">
                             <!--  bind -->
                           <label for="home">Home</label>                          <!-- HOME / BUSINESS -->
-                          <input v-mode="order.business" type="radio">
+                          <input v-model="order.business" type="radio">
                             <!--  bind -->
                           <label for="business">Business</label>
                         </div>
