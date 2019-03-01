@@ -6,19 +6,24 @@
 </head>
 <body>
 <div id ="blog-post-demo" class="demo">
- <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:post="post.title"> 
+ <blog-post 
+ v-for="post in posts" 
+ v-bind:key="post.id" 
+ v-bind:post="post.title">
+
 </blog-post>
+
 </div>
 <script type="text/javascript">
 Vue.component('blog-post', {
-  props: ['post'],
+  props: ['post', 'user'],
   template: '<h3>{{ post.title }}</h3>'
 })
 new Vue({
   el: '#blog-post-demo',
   data: {
-    posts: [ ],
-    users: [ ]
+    users: [ ],
+    posts: [ ]
   },
   created: function () {
     /* Alias the component instance as `vm`, so that we  
@@ -30,10 +35,11 @@ new Vue({
         return response.json()
       })
       .then(function (data) {
-        vm.posts = data
+        vm.posts = posts.data
       })
-  },
-  created: function() {
+
+  }, 
+  beforeCreate: function () {
     var userdata = this 
     fetch("https://jsonplaceholder.typicode.com/users")
       .then(function (response) {
@@ -42,7 +48,7 @@ new Vue({
       .then(function (data) {
         userdata.users = data
       })
-  },
+  }, 
 })
    </script>
   </body>
