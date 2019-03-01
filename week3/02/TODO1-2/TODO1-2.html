@@ -56,7 +56,6 @@
           </p>
           <button :disabled='isDisabled2' id="tbn2" class="default" v-on:click="product2.prod2 -= 1; addToCart2()" >Add to cart</button><br>
           <p>available in inventory: {{ product2.prod2 }} pcs</p>
-          
         </div>
       </div>
 
@@ -74,11 +73,11 @@
             {{product3.price | formatPrice}}
           </p>
           <button :disabled='isDisabled3' id="btn3" class="default" v-on:click="product3.prod3 -= 1; addToCart3()" >Add to cart</button><br>
-          <p>available in inventory: {{ product3.prod3 }} pcs   </p>
-          
+          <p>available in inventory: {{ product3.prod3 }} pcs</p>  
         </div>
       </div>
-    </div><!--end of row-->
+    </div><!--end of showProduct-->
+
     <div v-else="">
         <div class="row">
             <div >
@@ -95,47 +94,54 @@
                       </div>
                       <div class="form-group">
                         <div class="col-md-6">
-                          <strong>First Name:</strong>                            <!-- FIRST NAME -->
+                          <strong>First Name:</strong>                                                   <!-- FIRST NAME -->
                           <input v-model="order.firstName" class="form-control" />
                         </div>
                         <div class="col-md-6">
-                          <strong>Last Name:</strong>                             <!-- LAST NAME -->
+                          <strong>Last Name:</strong>                                                    <!-- LAST NAME -->
                           <input v-model="order.lastName"  class="form-control" />
                         </div>
                       </div>
                       <div class="form-group">
-                        <div class="col-md-12"><strong>Address:</strong></div>    <!-- ADDRESS -->
+                        <div class="col-md-12"><strong>Address:</strong></div>                           <!-- ADDRESS -->
                         <input v-model="order.address" class="form-control" />        
                       </div>
                       <div class="form-group">
-                        <div class="col-md-12"><strong>City:</strong></div>       <!-- CITY -->
+                        <div class="col-md-12"><strong>City:</strong></div>                              <!-- CITY -->
                         <input v-model="order.city" class="form-control" />
                       </div>
                       <div class="form-group">
                         <div class="col-md-2">
-                          <strong>State:</strong>
-                          <input v-for="states" v-model="states" class="form-control" >                  <!-- STATE -->
+                          <strong>State:</strong>                                                         <!-- STATE -->
+                          <select v-model="selected">
+                            <option v-for="option in states" v-bind:value="option.value">
+                              {{ option.value }}
+                            </option>
+                          </select>
+
                 <!--  bind  using v-model and v-for for a list of states -->
                         </div>
                       </div>
                       <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
-                          <strong>Zip / Postal Code:</strong>                     <!-- POSTAL CODE -->
+                          <strong>Zip / Postal Code:</strong>                                            <!-- POSTAL CODE -->
                           <input v-model="order.zip" class="form-control" />
                         </div>
                       </div>
                       <div class="form-group">
                         <div class="col-md-6 boxes">
                           <input  v-model="order.gift" type="checkbox">
-                          <label for="checkbox">Ship As Gift?</label>             <!-- SHIP AS GIFT -->
+                          <label for="checkbox">Ship As Gift?</label>                                    <!-- SHIP AS GIFT -->
+                          <span>Send as a gift: {{ checkedNames }}</span>
                         </div>
                       </div>
                       <div class="form-group">
                         <div class="col-md-6 boxes">
-                          <input v-model="order.home" type="radio">>
-                          <label for="home">Home</label>                          <!-- HOME / BUSINESS -->
-                          <input v-model="order.business" type="radio">
+                          <input v-model="picked" id="home" value="Home" type="radio">
+                          <label for="home">Home</label>                                                 <!-- HOME / BUSINESS -->
+                          <input v-model="picked" id="business" value="Business" type="radio">
                           <label for="business">Business</label>
+                          <span>Picked: {{ picked }}</span>
                         </div>
                       </div>
                       <div class="form-group">
@@ -150,7 +156,7 @@
                           Address: {{order.address}}
                           City: {{order.city}}
                           Zip: {{order.zip}}
-                          State: {{order.state}}
+                          State: {{selected}}
                           Method: {{order.method}}
                           Gift: {{order.gift}}
                         </pre>
@@ -160,30 +166,26 @@
                 </div>
               </div>
             </div>
-          </div>
-    </div>
-  </main><!--end of main-->
+        </div>
+    </div> <!-- end of a orderForm -->
+  </main>
   
 </div>
 <script type="text/javascript">
   var APP_LOG_LIFECYCLE_EVENTS = true;
   var webstore = new Vue({
     el: '#app',
-    data: {
+    data: {                                                                                         // DATA
       terms: true,
       terms2: true,
       terms3: true,
       sitename: "W3 02 TODO1-2",
       showProduct: false,
       a: false,
-      states: {
-        AL: 'Alabama',
-        AK: 'Alaska',
-        AR: 'Arizona',
-        CA: 'California',
-        NV: 'Nevada'
-      },
-      order: {
+      selected: "",
+      states: [ { AL: "Alabama", value: "Alabama" }, { AK: "Alaska", value: "Alaska"}, { AR: "Arizona", value: "Arizona"}, { CA: "California", value: "California"}, { NV: "Nevada", value: "Nevada" } ],
+      arvo: "",
+      order: {                                
         firstName: '',
         lastName: '',
         address: '',
@@ -223,7 +225,7 @@
       },
       cart: []
     },
-    methods: {
+    methods: {                                                                                    // METHODS
       addToCart: function() {
         this.cart.push( this.product.id );
         console.log("push to cast test product1"); 
@@ -258,7 +260,7 @@
       
     },
     // cartin toiminto, ettei sinne voi laittaa enempää, kuin mitä invetoryssä on tarjolla
-    computed: {      
+    computed: {                                                                                   // COMPUTED
       cartItemCount() {
         return this.cart.length || '';
       },
@@ -287,7 +289,7 @@
     },
 
     // inventory arvojen päivitys
-    watch: {
+    watch: {                                                                                       // WATCH
       prod1: function(newVal, oldVal) {                
           console.log('The old value of length was: '     
                       + oldVal +                          
@@ -315,7 +317,7 @@
     
 
     // hintaasrvo
-    filters: {
+    filters: {                                                                                  // FILTERS
       formatPrice(price) {	
         if (!parseInt(price)) { return ""; }	
         if (price > 99999) {	
