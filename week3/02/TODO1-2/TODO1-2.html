@@ -16,7 +16,7 @@
           <button type="submit" class="btn btn-default btn-lg" v-on:click="showCheckout">
             <span>{{ cartItemCount}}</span><span class="glyphicon glyphicon-shopping-cart"></span> Checkout
           </button>
-          <p>test: {{ showProduct }} </p>
+          <p>test: {{ showProduct }} {{ order.firstName }}</p>
         </form>
       </div>
     </div>
@@ -253,7 +253,10 @@
         var  count = {};
         this.cart.forEach(function(i) { count[i] = (count[i]||0) + 1;});
         console.log(count);
-      }
+      },
+      submitForm() {
+          alert('Submitted');
+        }
       
       /*  Button1: function() {
         var Prod1 = JSON.parse(window.localStorage.getItem('prod1'));
