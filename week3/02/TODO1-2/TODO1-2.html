@@ -132,16 +132,14 @@
                         <div class="col-md-6 boxes">
                           <input  v-model="order.gift" type="checkbox">
                           <label for="checkbox">Ship As Gift?</label>                                    <!-- SHIP AS GIFT -->
-                          <span>Send as a gift: {{ checkedNames }}</span>
                         </div>
                       </div>
                       <div class="form-group">
                         <div class="col-md-6 boxes">
-                          <input v-model="picked" id="home" value="Home" type="radio">
-                          <label for="home">Home</label>                                                 <!-- HOME / BUSINESS -->
-                          <input v-model="picked" id="business" value="Business" type="radio">
-                          <label for="business">Business</label>
-                          <span>Picked: {{ picked }}</span>
+                          <input v-model="order.method" id="home" value="Home" type="radio">
+                          <label for="order.home">Home</label>                                                 <!-- HOME / BUSINESS -->
+                          <input v-model="order.method" id="business" value="Business" type="radio">
+                          <label for="order.business">Business</label>
                         </div>
                       </div>
                       <div class="form-group">
@@ -192,12 +190,13 @@
         city: '',
         zip: '',
         state: '',
-        method: 'Home Address',
+        method: '',
         business: 'Business Address',
         home: 'Home Address',
         gift:'Send As A Gift',
         sendGift: 'Send As A Gift',
-        dontSendGift: 'Do Not Send As A Gift'
+        dontSendGift: 'Do Not Send As A Gift',
+        picked: '',
       },
       product: {      // CatFood
         id: 1001,
