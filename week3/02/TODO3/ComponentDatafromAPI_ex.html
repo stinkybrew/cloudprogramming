@@ -6,26 +6,31 @@
 </head>
 <body>
 <div id ="blog-post-demo" class="demo">
- <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:post="post.title">
+<blog-post v-for="post in posts" v-bind:key="post.id" v-bind:posts="post.title" v-bind:bodys="post.body" v-for="user in users" v-bind:user="user">
 </blog-post>
-<blog-post v-for="post in posts" v-bind:key="post.id" v-bind:post="post.body">
+<p>{{ users }}</p><br>
+<p>{{ posts }}</p>
+<!--<blog-post 
+v-for="user in users" 
+v-bind:key="user.id" 
+v-bind:users="user.name">
+  
 </blog-post>
-<blog-post v-for="post in users" v-bind:key="post.id" v-bind:post="post.name">
-</blog-post>
-
+-->
 </div>
 <script type="text/javascript">
 Vue.component('blog-post', {
-  props: ['post', 'users', 'bodys'],
-  template: '<h3>TESTI TITLE  {{ post }}  TESTI väli </h3>'
+  props: ['posts', 'user', 'bodys'],
+  template: '<h3>Aughtor: {{ user }} <h3>Title: {{ posts }}<h4>Body: {{bodys }}</h4></h3></h3> '
 })
 new Vue({
   el: '#blog-post-demo',
   data: {
     users: [ ],
-    posts: [ ]
+    posts: [ ],
   },
   created: function () {
+
     /* Alias the component instance as `vm`, so that we  
      can access it inside the promise function */
     var vm = this
@@ -36,9 +41,11 @@ new Vue({
       })
       .then(function (datas) {
         vm.posts = datas
-
       })
-
+      .catch(function(error) {
+        console.log('Request failed', error)
+      })
+      Response.Clear
     fetch("https://jsonplaceholder.typicode.com/users")
       .then(function (response) {
         return response.json()
@@ -46,22 +53,25 @@ new Vue({
       .then(function (data) {
         vm.users = data
       })
-
-  }, 
-   /* created: function () {
-    /* Alias the component instance as `userdata`, so that we  
-     can access it inside the promise function 
+      .catch(function(error) {
+        console.log('Request failed', error)
+      });
+  },
+ /* created: function () {
+    
     var vm = this
-    // Fetch our array of posts from an API
     fetch("https://jsonplaceholder.typicode.com/users")
       .then(function (response) {
         return response.json()
       })
       .then(function (data) {
         vm.users = data
-        console.log(vm.users)
       })
-  }, */
+      .catch(function(error) {
+        console.log('Request failed', error)
+      });
+
+  }*/
 })
    </script>
   </body>
