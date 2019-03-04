@@ -9,7 +9,9 @@ body {
   font-family: Arial;
   color: white;
   margin: 20px;
-  padding: 20px;
+  padding: 30px;
+  padding-right: 40px;
+  
 }
 .title {
     background: #A93226;
@@ -20,8 +22,9 @@ body {
 .list {
     background: #34495E;
     font-size: 16px;
-    padding-left: 20px;
     padding-top: 20px;
+    padding-bottom: 40px;
+    padding: 20px;
   }
 .list-item:not(:last-child) {
     padding-bottom: 15px;
