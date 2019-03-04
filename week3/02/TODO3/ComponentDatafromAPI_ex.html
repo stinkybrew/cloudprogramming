@@ -6,10 +6,16 @@
 </head>
 <body>
 <div id ="blog-post-demo" class="demo">
-<blog-post v-for="post in posts" v-bind:key="post.id" v-bind:posts="post.title" v-bind:bodys="post.body" v-for="user in users" v-bind:user="user">
-</blog-post>
-<p>{{ users }}</p><br>
-<p>{{ posts }}</p>
+    <blog-post v-for="user in users" v-bind:key="user.id" v-bind:address="user.address" v-bind:users="user.name">
+    </blog-post>
+    <div id ="blog-post-demo" class="demo"></div>
+      <blog-post v-for="post in posts" v-bind:key="post.userid" v-bind:posts="post.title" v-bind:bodys="post.body">
+      </blog-post>
+    <div id ="blog-post-demo" class="demo"></div>
+</div>
+
+<div id ="blog-post-demo" class="demo">
+
 <!--<blog-post 
 v-for="user in users" 
 v-bind:key="user.id" 
@@ -20,14 +26,14 @@ v-bind:users="user.name">
 </div>
 <script type="text/javascript">
 Vue.component('blog-post', {
-  props: ['posts', 'user', 'bodys'],
-  template: '<h3>Aughtor: {{ user }} <h3>Title: {{ posts }}<h4>Body: {{bodys }}</h4></h3></h3> '
+  props: ['users', 'posts', 'bodys', 'address'],
+  template: '<h3>{{ users }} -- {{ address }}<h3>{{ posts }}<h4>{{ bodys }}</h4></h3></h3>'
 })
 new Vue({
   el: '#blog-post-demo',
   data: {
-    users: [ ],
     posts: [ ],
+    users: [ ]
   },
   created: function () {
 
@@ -41,37 +47,31 @@ new Vue({
       })
       .then(function (datas) {
         vm.posts = datas
-      })
-      .catch(function(error) {
-        console.log('Request failed', error)
-      })
-      Response.Clear
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then(function (response) {
-        return response.json()
-      })
-      .then(function (data) {
-        vm.users = data
+        console.log(datas, "POSTS_LIST")
       })
       .catch(function(error) {
         console.log('Request failed', error)
       });
-  },
- /* created: function () {
-    
-    var vm = this
     fetch("https://jsonplaceholder.typicode.com/users")
       .then(function (response) {
-        return response.json()
-      })
-      .then(function (data) {
-        vm.users = data
-      })
-      .catch(function(error) {
-        console.log('Request failed', error)
+          return response.json()
+        })
+        .then(function (data) {
+          const myObjStr = JSON.stringify(data)
+          const myobjc2 = JSON.parse(myObjStr)
+
+          vm.users = data
+          //vm.posts.users = data
+          //vm.posts = myObjStr
+          //console.log(myObjStr, "testii1")
+          console.log(data, "USERS_LIST");
+          
+        })
+        .catch(function(error) {
+        console.log('Error ocured', error)
       });
 
-  }*/
+  }   
 })
    </script>
   </body>
