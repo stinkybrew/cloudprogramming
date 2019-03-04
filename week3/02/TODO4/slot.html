@@ -7,19 +7,32 @@
 <body>
 <div id="app">
   <!--Persons-->
+  <div>
   <my-list :items="persons" title="People">
-    <template slot-scope="person">
-      <div>{{ person.name }} <small>({{ person.tweet }} tweets)</small></div>
+    <template slot-scope="persons">
+      <div>
+        <h3>{{ persons.name }}</h3> 
+        <small>({{ persons.tweet }} tweets)</small>
+      </div>  
     </template>
   </my-list>
+  <my-list :items2="parties">
+      <template slot-scope=" parties">
+          <p>party: {{ parties.name }}</p> 
+          <p>number of senators: {{ parties.senators }}</p>
+          <br></br>
+      </template>
+    </my-list>
+  </div>   
 </div>
 
 <script type="text/x-template" id="my-list">
 <div class="my-list">
   <div class="title">{{ title }}</div>
   <div class="list">
-    <div class="list-item" v-for="item in items">
+    <div class="list-item" v-for="item in items" v-for="item2 in items2">
       <slot v-bind="item"></slot>
+      <slot v-bind="item2" > </slot>
     </div>
   </div>
 </div>
