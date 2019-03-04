@@ -12,9 +12,9 @@ new Vue({
       { name: 'Donald', tweet: '@realDonaldTrump' }
     ],
     parties: [
-      { name: 'Republican Party', senators: 53, },
-      { name: 'Democratic Party', senators: 45 },
-      { name: 'Independent', senators: 2 }
+      { namez: 'Republican Party', senators: 53, },
+      { namez: 'Democratic Party', senators: 45 },
+      { namez: 'Independent', senators: 2 }
     ]
   }
 });

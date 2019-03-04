@@ -1,7 +1,7 @@
 <!doctype html>
 <html data-framework="vue">
 <head>
-	<title>A Vue.js slot example </title>
+	<title>w3 02 TODO4 </title>
 	<link href="css/slot.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
@@ -9,15 +9,14 @@
   <!--Persons-->
   <div>
     <my-list :items="persons" :items2="parties" title="People">
-      <template slot-scope="persons" slot-scope="parties">
+      <template slot-scope="persons">
           <h3>pname: {{ persons.name }}</h3> 
           <small>({{ persons.tweet }} tweets)</small>
-          <p>party: {{ parties.name }}</p> 
+      </template>
+      <template slot-scope="parties">
+          <p>party: {{ parties.namez }}</p> 
           <p>number of senators: {{ parties.senators }}</p>
           <br></br>
-    <!--<div slot-scope="parties">
-
-        </div> -->
       </template>
     </my-list>
   </div>  
@@ -28,11 +27,12 @@
   <div class="title">{{ title }}</div>
 
   <div class="list">
-    <div class="list-item" v-for="(item, index) in items" :key="index">
-      <div class="list-item" v-for="(item2, index) in items2" :key="index">    
+    <div class="list-item" v-for="item in items">
+        <slot v-bind="item" ></slot>
+      <div class="list-item" v-for="item2 in items2"> 
+          <slot v-bind="item2"></slot>   
       </div>
-      <slot v-bind="item" ></slot>
-      <slot v-bind="item2" ></slot> 
+      
     </div>  
   </div>
   </div>
