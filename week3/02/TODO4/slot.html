@@ -1,33 +1,26 @@
 <!doctype html>
 <html data-framework="vue">
 <head>
-	<title>w3 02 TODO4 </title>
+	<title>A Vue.js slot example </title>
 	<link href="css/slot.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 <div id="app">
   <!--Persons-->
-  <div>
-    <my-list :items="persons" title="People">
-      <template slot-scope="persons">
-          <h3>pname: {{ persons.name }}</h3> 
-          <small>({{ persons.tweet }} tweets)</small>
-          <p>pname: {{ person.parties.namez }}</p> 
-          <small>senators: {{ persons.parties.senators }}</small>
-      </template>
-    </my-list>
-  </div>  
+  <my-list :items="persons" title="People">
+    <template slot-scope="person">
+      <div>{{ person.name }} <small>({{ person.tweet }} tweets)</small></div>
+    </template>
+  </my-list>
 </div>
 
 <script type="text/x-template" id="my-list">
 <div class="my-list">
   <div class="title">{{ title }}</div>
-
   <div class="list">
     <div class="list-item" v-for="item in items">
-        <slot v-bind="item" ></slot>
-    </div>  
-  </div>
+      <slot v-bind="item"></slot>
+    </div>
   </div>
 </div>
 </script>
