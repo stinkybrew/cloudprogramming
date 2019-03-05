@@ -9,7 +9,8 @@
   <!--Persons-->
   <div>
     <my-list :items="persons" :items2="parties" title="People">
-        <p>{{ parties.name }}</p>
+        {{ parties.name }}  <!-- FOR TESTING -->
+        {{ persons.name }}  <!-- FOR TESTING -->
       <template slot-scope="persons">
           <h3>pname: {{ persons.name }}</h3> 
           <small>({{ persons.tweet }} tweets)</small>
