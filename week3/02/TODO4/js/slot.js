@@ -21,9 +21,9 @@ new Vue({
     let partylist = this.parties
     const myObjStr = JSON.stringify(partylist)
     //const myobjc2 = JSON.parse(myObjStr)
-    return this.myObjStr
+    return myObjStr
   },
-  created: function merge(obj1, obj2) {
+ /* created: function merge(obj1, obj2) {
     for (var p in obj2) {
       try {
       // Property in destination object set; update its value.
@@ -42,5 +42,5 @@ new Vue({
     merge(this.persons,this.parties)
     console.log( JSON.stringify(this.persons) )
 
-    }
+    }*/
 });
