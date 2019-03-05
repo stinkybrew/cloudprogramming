@@ -1,5 +1,5 @@
 body {
-  background: linear-gradient(270deg, #0E6251, #28B463);
+  background: linear-gradient(270deg, rgb(29, 7, 48), rgb(240, 184, 81));
 }
 #app {
   display: flex;
