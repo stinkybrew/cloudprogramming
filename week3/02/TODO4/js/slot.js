@@ -23,7 +23,7 @@ new Vue({
     //const myobjc2 = JSON.parse(myObjStr)
     return myObjStr
   },
- /* created: function merge(obj1, obj2) {
+  created: function merge(obj1, obj2) {
     for (var p in obj2) {
       try {
       // Property in destination object set; update its value.
@@ -36,11 +36,8 @@ new Vue({
         obj1[p] = obj2[p];
       }
     }
-    return this.obj1;
-  },
-  created: function () {
     merge(this.persons,this.parties)
     console.log( JSON.stringify(this.persons) )
-
-    }*/
+    return this.obj1;
+  },
 });
