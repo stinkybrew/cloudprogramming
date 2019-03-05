@@ -17,12 +17,16 @@ new Vue({
       { name: 'Independent', senators: 2 }
     ]
   },
+
+  // --------------------------------------------
+  // Test to emerging lists
+
   created: function () {
     vm = this
-    let personlist = JSON.stringify(vm.persons)
-    let partylist = JSON.stringify(vm.parties)
+    let personlist = JSON.stringify(this.persons)
+    let partylist = JSON.stringify(this.parties)
     //const myobjc2 = JSON.parse(myObjStr)
-    console.log( this.persons );
+    console.log(this.persons);
     return partylist, personlist 
   },
   created: function mergeRecursive(obj1, obj2) {
@@ -30,34 +34,25 @@ new Vue({
       return;
     }
     a(--x);
-    vm = this
-    // ----------------------------------------------
-   /* for (var p in obj2) {
-      try {
-      // Property in destination object set; update its value.
-      if (obj2[p].index == Object) {
-          obj1[p] = this.merge(obj1[p], obj2[p]);
-        } else {
-          obj1[p] = obj2[p];
-        }
-      } catch (e) {
-        obj1[p] = obj2[p];
-      }
-
-    } */
+    vm = this */
 
     // ----------------------------------------------
 
     for (var i in obj2) {
       try {
-        // Property in destination object set; update its value.
-        if (obj2[i].constructor == Object) {
+        // Property in destination object1(persons) set; update its value.
+        if (obj2[i].index == Object) {
           obj1[i] = this.mergeRecursive(obj1[i], obj2[i]);
-        } else {
+          console.log("IF TEST");
+        } 
+        else {
           obj1[i] = obj2[i];
+          console.log("ELSE TEST");
         }
-      } catch (e) {
+      } 
+      catch (e) {
         obj1[i] = obj2[i];
+        console.log("CATCH TEST");
       }
     }
     return obj1;
@@ -65,6 +60,7 @@ new Vue({
   created: function () {
     mergeRecursive(this.persons,this.parties)
     console.log(JSON.stringify(this.persons))
+    console.log("LAST TEST");
     
   }
 
