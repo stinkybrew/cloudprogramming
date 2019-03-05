@@ -22,47 +22,55 @@ new Vue({
   // Test to emerging lists
 
   created: function () {
+
     vm = this
-    let personlist = JSON.stringify(this.persons)
-    let partylist = JSON.stringify(this.parties)
+    this.persons = JSON.stringify(this.persons)
+    this.parties = JSON.stringify(this.parties)
     //const myobjc2 = JSON.parse(myObjStr)
     console.log(this.persons);
     return partylist, personlist 
   },
   created: function mergeRecursive(obj1, obj2) {
-   /* if ( ! obj1 || obj2) {
-      return;
-    }
-    a(--x);
-    vm = this */
+    // following is to avoid "Error in created hook: "RangeError: Maximum call stack size exceeded""
+
 
     // ----------------------------------------------
-
-    for (var i in obj2) {
+    vm = this 
+    for (var i in obj2[i]) {
       try {
         // Property in destination object1(persons) set; update its value.
-        if (obj2[i].index == Object) {
-          obj1[i] = this.mergeRecursive(obj1[i], obj2[i]);
+        if (obj2[i]) {
+          obj1 = this.mergeRecursive(obj1[i], obj2[i]);
           console.log("IF TEST");
+          return obj1[i];
         } 
         else {
-          obj1[i] = obj2[i];
+          obj1[i] = obj1[i] + obj2[i] ;
           console.log("ELSE TEST");
+          return obj1[i];
         }
       } 
       catch (e) {
+        //obj1 = obj1 + obj2;
         obj1[i] = obj2[i];
-        console.log("CATCH TEST");
+        console.log("CATCH TEST", obj1[i] );
+        return obj1[i];
+        
       }
+      /* if (! obj1) {
+        //console.log(JSON.stringify(this.persons))
+        return;
+      }
+      mergeRecursive(--obj1); */
     }
-    return obj1;
-  },
-  created: function () {
-    mergeRecursive(this.persons,this.parties)
-    console.log(JSON.stringify(this.persons))
     console.log("LAST TEST");
+    mergeRecursive(this.persons.name,this.parties.name)
+    console.log("LAST TEST", this.persons);
+    //console.log(JSON.stringify(this.persons))
+
     
-  }
+    
+  },
 
     // -----------------------------------------------  
    /* mergeRecursive(this.personlist,this.partylist)
