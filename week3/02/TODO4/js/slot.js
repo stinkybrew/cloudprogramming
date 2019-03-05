@@ -26,7 +26,7 @@ new Vue({
     return partylist, personlist 
   },
   created: function mergeRecursive(obj1, obj2) {
-    if ( ! obj1 || obj2) {
+   /* if ( ! obj1 || obj2) {
       return;
     }
     a(--x);
