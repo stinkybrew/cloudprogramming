@@ -48,6 +48,14 @@ or use the graphical interface:
 ```
 vue ui
 ```
+
+To run Vue app on your browser:
+```
+npm run serve
+```
+
+
+
 you get a clean structure for your application
 
 ![Directory structure](img/dir_struct.png)
