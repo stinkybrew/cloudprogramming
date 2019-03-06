@@ -1,6 +1,6 @@
 <html>
    <head>
-      <title>VueJs Instance</title>
+      <title>w4 01 TODO1</title>
       <script src="https://unpkg.com/vue/dist/vue.js"></script>
 	  <script src="https://unpkg.com/vue-router@3.0.2/dist/vue-router.js"></script>
    </head>
@@ -10,18 +10,20 @@
          <p>
             <router-link to = "/route1">Router Link 1</router-link>
             <router-link to = "/route2">Router Link 2</router-link>
+            <router-link to = "/not found">Router Link 3</router-link>
          </p>
          <!-- route outlet -->
          <!-- component matched by the route will render here -->
          <router-view></router-view>
       </div>
       <script type = "text/javascript">
-		 
+         const notFound = { template: '<div>The page is not found</div>' }
          const Route1 = { template: '<div>This is router 1</div>' }
          const Route2 = { template: '<div>This is router 2</div>' }
          const routes = [
             {path: '/route1', component: Route1} ,
-            {path: '/route2', component: Route2}
+            {path: '/route2', component: Route2} ,
+            {path: '/not found', component: notFound} ,
          ]
 		 
     const router = new VueRouter({
