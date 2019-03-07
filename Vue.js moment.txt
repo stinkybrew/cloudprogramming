@@ -1,0 +1,10 @@
+INSTALLING:
+npm install vue-moment
+
+...and require the plugin like so:
+Vue.use(require('vue-moment'));
+
+Usage:
+<span>{{ someDate | moment("dddd, MMMM Do YYYY") }}</span>
+<!-- or create a new date from 'now' -->
+<span>{{ new Date() | moment("dddd, MMMM Do YYYY") }}</span>
