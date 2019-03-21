@@ -1,4 +1,6 @@
 
+// w5 01 TODO1
+
 /* Exploring ECMA6 promise chains and arrow functions */
 "use strict"
 
