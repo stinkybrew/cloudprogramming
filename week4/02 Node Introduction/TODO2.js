@@ -1,6 +1,6 @@
 
 'use strict'
-
+// w4 02 TODO2
 var readline = require('readline-sync')
 
 var type = String(readline.question('membership type (basic, premium, gold): ')).trim()
