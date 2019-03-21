@@ -44,6 +44,19 @@ exports.add = bookId => {
   return 'book '+bookId+' added'
 }
 
+exports.splice = bookId => {
+  if (bookId.length != 12) {
+    /* this throws a user-defined exception. */
+    throw('bookId should be 12 character long')
+  }
+  if (bookList.indexOf(bookId) == -1) {
+    throw('theres no book with this bookId')
+  }
+  bookList.splice(bookId)
+  //console.log(bookList.length)
+  return 'book '+bookId+' removed'
+}
+
 exports.bookCount = () => {
   return bookList.length
 }

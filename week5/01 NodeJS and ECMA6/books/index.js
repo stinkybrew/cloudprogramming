@@ -9,7 +9,8 @@ input.on('data', chunk => {
   const item = text.substring(space).trim()
   if (text.indexOf('search ') === 0) {
     console.log('searching for "'+item+'"')
-    /* Notice how the callback takes two parameters, an error and the data where a non-null error parameter indicates an error has ocurred. */
+    /* Notice how the callback takes two parameters, an error and the data where a 
+    non-null error parameter indicates an error has ocurred. */
     books.search(item, (err, data) => {
       if (err) {
         /* the message property contains the string passed to the error object. */
@@ -26,7 +27,24 @@ input.on('data', chunk => {
       const result = books.add(item)
       console.log(result)
     } catch (err) {
-      /* if an exception is thrown the program flow jumps to the 'catch' block, the exception is stored in the 'err' parameter. */
+      /* if an exception is thrown the program flow jumps to the 'catch' block, 
+      the exception is stored in the 'err' parameter. */
+      console.log(err)
+    } finally {
+      console.log('the list contains '+books.bookCount()+' books')
+    }
+  }
+
+  // GOING TO BE DELETE BOOK FUNCTION
+  if (text.indexOf('remove ') === 0) {
+    console.log('removing "'+item+'"')
+    /* we wrap our code in a 'try' block */
+    try {
+      const result = books.splice(item)
+      console.log(result)
+    } catch (err) {
+      /* if an exception is thrown the program flow jumps to the 'catch' block, 
+      the exception is stored in the 'err' parameter. */
       console.log(err)
     } finally {
       console.log('the list contains '+books.bookCount()+' books')
