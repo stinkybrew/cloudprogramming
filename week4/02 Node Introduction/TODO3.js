@@ -46,9 +46,9 @@ do {
 	  let space = input.indexOf(' ')
 	  let item = input.substring(space+1).trim()
 	  let newitem = item.toLowerCase()
-	  console.log('removing "'+item+'"')
-	  if (items.indexOf(item) !== -1) {
-	    items.splice(item)
+	  console.log('removing "'+newitem+'"')
+	  if (items.indexOf(newitem) !== -1) {
+	    items.splice(newitem)
 	  }
 	  else {
 		  console.log('item you are trying to remove, is not in the list.')
