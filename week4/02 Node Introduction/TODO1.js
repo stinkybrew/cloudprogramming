@@ -6,8 +6,8 @@
 const readline = require('readline-sync')
 
 /* Here we declare an empty array which will be used to store the todo list items. */
-var items = []
-
+const items = []  // "CONST" means, it's not possible to change constant primitive values, but can change the properties of constant objects. So we cannot change value of "CONST" in other plases of script.
+ 
 /* the do-while loop has its exit condition at the end which means it always executes at least once. */
 do {
   /* We capture the text input by the user. This is then converted into a String and finally any _whitespace_ (newline characters, spaces, etc) are removed. */
@@ -33,7 +33,8 @@ do {
     /* console.log() prints to the terminal. */
 		console.log('adding "'+item+'"')
     /* All arrays have a built-in push() function which appends an item to their end. */
-		items.push(item)
+        //items.push(item)
+        items.unshift(item) // THIS "unshift" adds new values to the begining of an array, not to the end like "push" does.
 	}
 	if (input.indexOf('list') === 0) {
     /* Here we use a for...next loop to interate through all the array indexes. The let keyword defines a variable with _block_ scope (more on this later). */
