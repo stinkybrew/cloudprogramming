@@ -12,8 +12,10 @@ function reverse(string) {
         /* notice the use of the 'const' keyword instead of the usual 'var'. 
         This indicates a constant or 'immutable variable'. */
         const reversed = string.split('').reverse().join('')
+        let cap = reversed + string.charAt(0).toUpperCase() + string.slice(1)
+        let capl = cap + string.substring(0, string.length - 1) + string.charAt(string.length-1).toUpperCase()
         //reject('could not reverse the string')
-        resolve(reversed)
+        resolve(capl)
     })
 }
 
@@ -23,7 +25,7 @@ function capitalise(string) {
         /* the 'let' keyword means the scope of the following variable is limited to the current code block rather 
         than being scoped by the function. 
         Use of this required strict mode to be implemented. */
-        let cap = string.charAt(0).toUpperCase() + string.slice(1)
+        //let cap = string.charAt(0).toUpperCase() + string.slice(1)
         //reject('could not capitalise the string')
         resolve(cap)
     })
@@ -31,9 +33,8 @@ function capitalise(string) {
 
 function caplast(string) {
     return new Promise((resolve, reject) => {
-        let capl = string.substring(0, string.length - 1) + string.charAt(string.length-1).toUpperCase()
+        //let capl = string.substring(0, string.length - 1) + string.charAt(string.length-1).toUpperCase()
        // let capl = remlast + string.charAt(-1).toUpperCase()// + string.slice(string.length-1) //+ string.substring(string.length-1).toUpperCase()
-        
         resolve(capl)
     })
 }
