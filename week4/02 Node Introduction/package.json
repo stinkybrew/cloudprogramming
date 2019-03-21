@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "readline-sync": "^1.4.7"
+  },
+  "devDependencies": {
+    "jshint": "^2.10.2"
   }
 }
