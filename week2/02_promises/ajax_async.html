@@ -10,6 +10,7 @@
     <label><input type="checkbox"> Fake network delay</label>
   </div>
   <div class="story"></div>
+  <button type="button">show next chater</button>
   <svg class="spinner" viewBox="0 0 100 100" width="20" height="20">
     <circle cx="50" cy="50" r="42" transform="rotate(-90,50,50)" />
   </svg>
@@ -18,11 +19,12 @@
   <script src="js/utils.js"></script>
   <script>
     // Use Github Gist when no web server is available
-    // getJson('https://gist.githubusercontent.com/c0lin/571d38b984d41b44aacf/raw/story.json').then(function(story) {
-    getJson('data/story.json')
+    getJson('https://gist.githubusercontent.com/c0lin/571d38b984d41b44aacf/raw/story.json')
+    //getJson('data/story.json')
     .then(function(story) {
       addHtmlToPage(story.heading);
-
+    })  
+    .then(function() {  
       return story.chapterUrls.reduce(function(chain, chapterUrl) {
         // Once the last chapter's promise is done...
         return chain
@@ -36,6 +38,7 @@
         });
       }, Promise.resolve());
     })
+    
     .then(function() {
       // And we're all done!
       addTextToPage("All done");
