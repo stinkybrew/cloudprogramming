@@ -11,7 +11,7 @@ function reverse(string) {
     return new Promise((resolve, reject) => {
         /* notice the use of the 'const' keyword instead of the usual 'var'. 
         This indicates a constant or 'immutable variable'. */
-        const reversed = string.split('').reverse().join('')
+        const reversed = string.split('').reverse().join('')    // THIS IS HOW I CAN DO THE SAME THINS WITHIN 1 FUNCTION !
         let cap = reversed + string.charAt(0).toUpperCase() + string.slice(1)
         let capl = cap + string.substring(0, string.length - 1) + string.charAt(string.length-1).toUpperCase()
         //reject('could not reverse the string')

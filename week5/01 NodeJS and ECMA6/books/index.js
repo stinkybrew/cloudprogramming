@@ -6,7 +6,7 @@ const input = process.openStdin()
 input.on('data', chunk => {
   const text = chunk.toString().trim()
   const space = text.indexOf(' ')
-  const item = text.substring(space).trim()  // THIS IS HOW I CAN DO THE SAME THINS WITHIN 1 FUNCTION !
+  const item = text.substring(space).trim()  
   if (text.indexOf('search ') === 0) {
     console.log('searching for "'+item+'"')
     /* Notice how the callback takes two parameters, an error and the data where a 
