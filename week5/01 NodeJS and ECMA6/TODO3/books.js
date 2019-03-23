@@ -1,5 +1,5 @@
 
-// w5 01 TODO2
+// w5 01 TODO3
 var request = require('request')
 
 var bookList = []
@@ -10,7 +10,7 @@ exports.search = (query, callback) => {
     callback(new Error('missing query parameter'))
   }
   const url = 'https://www.googleapis.com/books/v1/volumes'
-  const query_string = {q: query, maxResults: 3, fields: 'items(id,volumeInfo(title,authors))'}
+  const query_string = {q: query, maxResults: 10, fields: 'items(id,volumeInfo(title,authors))'}
   request.get({url: url, qs: query_string}, (err, res, body) => {
     if (err) {
       callback(new Error('error making google books request'))
@@ -35,14 +35,15 @@ exports.info = (query, callback) => {
     callback(new error("Query fails to get parameter"))
   }
   const url2 ="https://www.googleapis.com/books/v1/volumes"
-  const query_string = {q: query, maxResults: 10, fields: "items(id,volumeInfo(title,authors))"}
+  // Seach for specific book
+  const query_string = {q: query, maxResults: 1, fields: "items(id,volumeInfo(title,authors))"}
   request.get({url: url2,qs: query_string}, (err, res, body) => {
     if (err) {
       callback(new Error('error in openlibrary request.'))
     }
     const json = JSON.parse(body)
     const items = json.items
-    if (itmes === undefined) {
+    if (items === undefined) {
       callback(new Error('no books found matching search'))
       return
     }
@@ -52,6 +53,31 @@ exports.info = (query, callback) => {
     callback(null, books)
   })
 }
+// TEST!
+exports.test = (query, callback) => {
+  if (typeof query != "string" || query.length === 0) {
+    callback(new error("Query fails to get parameter"))
+  }
+  const url2 ="https://www.googleapis.com/books/v1/volumes"
+  // Seach for specific book
+  const query_string = {q: query, maxResults: 1, fields: "items(id,volumeInfo(title,authors))"}
+  request.get({url: url2,qs: query_string}, (err, res, body) => {
+    if (err) {
+      callback(new Error('error while testing'))
+    }
+    const json = JSON.parse(body)
+    const items = json.items
+    if (items === undefined) {
+      callback(new Error('no books found matching search'))
+      return
+    }
+    const books = items.map( element => {
+      return {id:element.id, title:element.volumeInfo.title, authors:element.volumeInfo.authors}
+    })
+    callback(null, books)
+  })
+}
+
 
 /* a synchronous function will either return data or throw an error */
 exports.add = bookId => {     ////////               <----------- EXPORTS.ADD ! ! ! !

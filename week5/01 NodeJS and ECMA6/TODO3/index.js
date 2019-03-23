@@ -2,7 +2,7 @@
 // w5 01 TODO2
 var books = require('./books.js')
 
-const input = process.openStdin()
+const input = process.openStdin() //INPUT !!!!
 
 input.on('data', chunk => {
   const text = chunk.toString().trim()
@@ -24,13 +24,21 @@ input.on('data', chunk => {
 
   // GETTINF BOOK INFO!
   if (text.indexOf('info ') === 0) {
-    console.log('getting info for "'+item+'"') a 
+    console.log('getting info for "'+item+'"')
     books.info(item, (err, data) => {
       if (err) {
         console.log(err.message)
         return
       }
       console.log(JSON.stringify(data, null, 2))
+    })
+    describe('Book List', function () {
+      it("Test length", function() {
+        expect(item.length(12)); 
+      });
+      it("Test bookId", function() {
+        expect(item.length(12)); 
+      });
     })
   }
 
@@ -62,6 +70,51 @@ input.on('data', chunk => {
       console.log(err)
     } finally {
       console.log('the list contains '+books.bookCount()+' books')
+    }
+  }
+  // LEST ADD LIST request, so we can see what books we have in the list
+  if (text.indexOf('list') === 0) {
+		for (let i=0; i< item.length; i++) {
+			console.log(i+'. '+item[i])
+		}
+	}
+
+  if(text.indexOf("test") === 0) {
+    try {
+      /*describe("Testing dooks", function() {
+        var a = "tBbsAgAAQBAJ"; var b = "tBbsAgAAQBAJHG";
+        it("Add tBbsAgAAQBAJ", function() {
+          expect(AddTwoBooks(a,b)).toEqual(7); 
+        });
+        it("Multiply Numbers", function() {
+          expect(MultiplyBooks(a,b)).toEqual(12); 
+        });
+        it("Compare Numbers to be Greater Than", function() {
+        expect(a).toBeGreaterThan(b); });
+        it("Compare Numbers to be Less Than", function() {
+        expect(b).toBeLessThan(a);
+        });
+      });*/
+  
+      describe ( function() {
+        /* this code is run before each of the tests */
+        beforeEach(() => {
+          var a = text; 
+          list.add(a)
+        })
+        it("Test length", function() {
+          expect(a.length(12)); 
+        });
+        /* this code is run after EACH test */
+        afterEach(() => {
+          list.clear()
+        })
+      })
+      console.log(result)
+    } catch (err) {
+      console.log(err)
+    } finally {
+      console.log('Testing done succesfully')
     }
   }
 })
