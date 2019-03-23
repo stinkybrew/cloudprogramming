@@ -72,11 +72,20 @@ input.on('data', chunk => {
       console.log('the list contains '+books.bookCount()+' books')
     }
   }
-  // LEST ADD LIST request, so we can see what books we have in the list
+  // LETS ADD LIST request, so we can see what books we have in the list
   if (text.indexOf('list') === 0) {
-		for (let i=0; i< item.length; i++) {
-			console.log(i+'. '+item[i])
-		}
+    try {
+      //console.log(books)
+      for (let i=0; i< books.length; i++) {
+        console.log(books[i])
+      }
+    } catch (err) {
+      /* if an exception is thrown the program flow jumps to the 'catch' block, 
+      the exception is stored in the 'err' parameter. */
+      console.log(err)
+    } finally {
+      console.log('the list contains '+books.list+' books')
+    }
 	}
 
   if(text.indexOf("test") === 0) {

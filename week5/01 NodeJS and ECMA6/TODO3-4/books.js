@@ -109,3 +109,7 @@ exports.splice = bookId => {
 exports.bookCount = () => {
   return bookList.length
 }
+
+exports.list = () => {
+  return bookList
+}
